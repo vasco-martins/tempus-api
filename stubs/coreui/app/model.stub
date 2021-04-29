@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Models;
+
+#--PASSWORD-HASH-IMPORT--#
+
+class #--MODEL-NAME--# extends Model
+{
+
+    protected
+        $fillable = [
+#--FILLABLE--#
+    ];
+
+    #--RELATIONSHIPS--#
+    #--HASH_FUNCTIONS--#
+
+}

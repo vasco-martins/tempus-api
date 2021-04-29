@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8b753790-f878-4562-9790-bc258a1ab44a" name="Default Changelist" comment="">
+    <list default="true" id="8b753790-f878-4562-9790-bc258a1ab44a" name="Default Changelist" comment="Add some things">
+      <change afterPath="$PROJECT_DIR$/projects/1-days/app/Http/Controllers/GroupController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/projects/1-days/app/Http/Controllers/SchoolController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/projects/2-a-par-e-passo/app/Http/Controllers/GroupController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/projects/2-a-par-e-passo/app/Http/Controllers/RoleController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/projects/2-a-par-e-passo/app/Http/Controllers/SchoolController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/projects/2-a-par-e-passo/app/Http/Controllers/SchoolRoleController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/projects/2-a-par-e-passo/app/Http/Controllers/StudentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/projects/1-days/resources/views/dashboard/shared/nav-builder.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/projects/1-days/resources/views/dashboard/shared/nav-builder.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/projects/1-days/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/projects/1-days/routes/web.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/projects/2-a-par-e-passo/app/Http/Controllers/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/projects/2-a-par-e-passo/app/Http/Controllers/Controller.php" afterDir="false" />
@@ -270,7 +278,7 @@
       <workItem from="1619448440609" duration="588000" />
       <workItem from="1619512530354" duration="10000" />
       <workItem from="1619605181999" duration="1490000" />
-      <workItem from="1619679871813" duration="640000" />
+      <workItem from="1619679871813" duration="1613000" />
     </task>
     <servers />
   </component>
@@ -288,5 +296,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add some things" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add some things" />
   </component>
 </project>

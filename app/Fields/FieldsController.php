@@ -28,7 +28,7 @@ class FieldsController
     }
 
     public function getField(): Field {
-        return new $this->fields['string']($this->modelField);
+        return new $this->fields[$this->modelField->type]($this->modelField);
     }
 
 }

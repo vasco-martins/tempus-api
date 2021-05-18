@@ -38,9 +38,7 @@ class CreateProjectJob implements ShouldQueue
     public function handle()
     {
         $themeFolder = base_path('themes/coreui');
-            if(is_dir($this->project->folder)) {
-                (new Filesystem)->remove($this->project->folder);
-            }
+
         File::makeDirectory($this->project->folder, 0777, true, true);
 
         $filesystem = new Filesystem();

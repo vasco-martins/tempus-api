@@ -14,7 +14,7 @@ class TextareaField extends Field
         $usesQuill = false;
 
         foreach ($validations as $validation) {
-            if($validation->name == "quill" && $validation->value == true) {
+            if($validation->name == "quill" && $validation->value == 1) {
                 $usesQuill = true;
                 break;
             }
@@ -78,6 +78,6 @@ class TextareaField extends Field
     public function getTable(): string
     {
         $lowerCaseModelName = $this->getLowerCaseModelName();
-        return "{{ \Illuminate\Support\Str::words(strip_tags($$lowerCaseModelName->$this->modelField->database_name), 10,'....')  }}";
+        return "{{ \Illuminate\Support\Str::words(strip_tags($$lowerCaseModelName->" . $this->modelField->database_name . "), 10,'...')  }}";
     }
 }

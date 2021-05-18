@@ -49,7 +49,7 @@ class ProjectModelController extends Controller
 
         $model = ProjectModel::create($data);
 
-        $model->load('fields');
+        $model->load('fields', 'fields.validations');
 
         foreach ($data['fields'] as $fieldData) {
             $field = $model->fields()->create($fieldData);

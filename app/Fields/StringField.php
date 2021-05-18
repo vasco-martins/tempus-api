@@ -32,6 +32,6 @@ class StringField extends Field
     public function getTable(): string
     {
         $lowerCaseModelName = $this->getLowerCaseModelName();
-        return "{{ $$lowerCaseModelName->$this->modelField->database_name ?? '' }}";
+        return "{{ $$lowerCaseModelName->" . $this->modelField->database_name . " ?? '' }}";
     }
 }

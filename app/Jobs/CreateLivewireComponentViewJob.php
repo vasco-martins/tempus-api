@@ -38,7 +38,7 @@ class CreateLivewireComponentViewJob implements ShouldQueue
      */
     public function handle()
     {
-        $stub = file_get_contents(base_path('stubs/coreui/app/views/livewire.stub'));
+        $stub = file_get_contents(base_path('stubs/coreui/views/livewire.stub'));
 
         foreach ($this->project->projectModels as $projectModel) {
             $livewireComponentNamePluralAndLowerCase = Str::lower(Str::plural($projectModel->name));
@@ -73,7 +73,7 @@ class CreateLivewireComponentViewJob implements ShouldQueue
         $str = '';
         foreach($projectModel->fields as $field) {
             if($field->in_view) {
-                $str .= "<th>$field->label</th>";
+                $str .= "<th>$field->label</th>\n\t\t\t\t\t";
             }
         }
         return $str;
@@ -84,7 +84,7 @@ class CreateLivewireComponentViewJob implements ShouldQueue
         foreach($projectModel->fields as $field) {
             $fieldController = new FieldsController($field);
             if($field->in_view)     {
-                $str .= '<td>' . $fieldController->getField()->getTable() . '</td>';
+                $str .= '<td>' . $fieldController->getField()->getTable() . '</td>' . "\n\t\t\t\t\t\t";
             }
         }
         return $str;

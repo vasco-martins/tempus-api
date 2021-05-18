@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Post;
 use Illuminate\Database\Seeder;
-//use database\seeds\UsersAndNotesSeeder;
-//use database\seeds\MenusTableSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,20 +14,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        //$this->call(MenusTableSeeder::class);
-        //$this->call(UsersAndNotesSeeder::class);
-        /*
-        $this->call('UsersAndNotesSeeder');
-        $this->call('MenusTableSeeder');
-        $this->call('FolderTableSeeder');
-        $this->call('ExampleSeeder');
-        $this->call('BREADSeeder');
-        $this->call('EmailSeeder');
-        */
+        // \App\Models\User::factory(10)->create();
+        Post::factory()->count(20)->create();
 
-        $this->call([
-            UsersAndNotesSeeder::class,
-
-        ]);
     }
 }

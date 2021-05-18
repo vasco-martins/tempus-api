@@ -20,7 +20,7 @@ class ModelField extends Model
 
     public function model()
     {
-        return $this->hasMany(ProjectModel::class);
+        return $this->belongsTo(ProjectModel::class, 'project_model_id');
     }
 
     public function validations()

@@ -2,18 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8b753790-f878-4562-9790-bc258a1ab44a" name="Default Changelist" comment="Add some things">
-      <change afterPath="$PROJECT_DIR$/projects/1-days/app/Http/Controllers/GroupController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projects/1-days/app/Http/Controllers/SchoolController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projects/2-a-par-e-passo/app/Http/Controllers/GroupController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projects/2-a-par-e-passo/app/Http/Controllers/RoleController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projects/2-a-par-e-passo/app/Http/Controllers/SchoolController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projects/2-a-par-e-passo/app/Http/Controllers/SchoolRoleController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projects/2-a-par-e-passo/app/Http/Controllers/StudentController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Fields/Field.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Fields/FieldsController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Fields/NumberField.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Fields/StringField.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Fields/TextareaField.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stubs/coreui/app/livewire.stub" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stubs/coreui/views/index.stub" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stubs/coreui/views/livewire.stub" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/saveactions_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/saveactions_settings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/1-days/resources/views/dashboard/shared/nav-builder.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/projects/1-days/resources/views/dashboard/shared/nav-builder.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/1-days/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/projects/1-days/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/2-a-par-e-passo/app/Http/Controllers/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/projects/2-a-par-e-passo/app/Http/Controllers/Controller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/2-a-par-e-passo/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/projects/2-a-par-e-passo/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Builder/ShowFieldsListController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Builder/ShowFieldsListController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectModelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectModelController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Jobs/CreateControllersJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/CreateControllersJob.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Jobs/CreateProjectJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/CreateProjectJob.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/ModelField.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ModelField.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/1-days/app/Http/Livewire/School/Index.php" beforeDir="false" afterPath="$PROJECT_DIR$/projects/1-days/app/Http/Livewire/School/Index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stubs/coreui/app/controller.stub" beforeDir="false" afterPath="$PROJECT_DIR$/stubs/coreui/app/controller.stub" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,13 +201,14 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/themes/inspinia" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Fields" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="settings.saveactions" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Fields" />
       <recent name="$PROJECT_DIR$/themes/inspinia" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -278,8 +284,23 @@
       <workItem from="1619448440609" duration="588000" />
       <workItem from="1619512530354" duration="10000" />
       <workItem from="1619605181999" duration="1490000" />
-      <workItem from="1619679871813" duration="1613000" />
+      <workItem from="1619679871813" duration="3139000" />
+      <workItem from="1620160377054" duration="1518000" />
+      <workItem from="1620208085714" duration="596000" />
+      <workItem from="1620667501657" duration="13000" />
+      <workItem from="1620813926393" duration="7528000" />
+      <workItem from="1620924097971" duration="1172000" />
+      <workItem from="1621010522015" duration="8573000" />
+      <workItem from="1621325611950" duration="3364000" />
     </task>
+    <task id="LOCAL-00001" summary="Add some things">
+      <created>1619681575637</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1619681575637</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

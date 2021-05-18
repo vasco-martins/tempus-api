@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProjectModel\CreateProjectModel;
 use App\Jobs\CreateControllersJob;
+use App\Jobs\CreateIndexViewJob;
+use App\Jobs\CreateLivewireComponentLogicJob;
+use App\Jobs\CreateLivewireComponentViewJob;
 use App\Jobs\CreateMenuJob;
 use App\Jobs\CreateModelsJob;
 use App\Jobs\CreateRoutesJob;
@@ -57,6 +60,9 @@ class ProjectModelController extends Controller
         CreateControllersJob::dispatch($project);
         CreateModelsJob::dispatch($project);
         CreateMenuJob::dispatch($project);
+        CreateLivewireComponentLogicJob::dispatch($project);
+        CreateIndexViewJob::dispatch($project);
+        CreateLivewireComponentViewJob::dispatch($project);
 
         return true;
     }

@@ -9,6 +9,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 
 class CreateControllersJob implements ShouldQueue
 {
@@ -49,6 +50,8 @@ class CreateControllersJob implements ShouldQueue
                 Str::lower($projectModel->name),
                 Str::lower(Str::plural($projectModel->name))
             ], $stub);
+
+
             file_put_contents($this->project->folder . '/app/Http/Controllers/' . $projectModel->controller_name . 'Controller.php', $replacement);
         }
     }

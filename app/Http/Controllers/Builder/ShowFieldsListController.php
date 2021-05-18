@@ -49,7 +49,7 @@ class ShowFieldsListController extends Controller
                         "max" => 255,
                         "required" => false
                     ],
-                ]
+                ],
             ],
             [
                 "type" => "email",
@@ -162,7 +162,25 @@ class ShowFieldsListController extends Controller
                         "required" => false
                     ],
                 ]
-            ]
+            ],
+            [
+                "type" => "select",
+                "label" => "Select",
+                "validations" => [
+                    [
+                        "name" => "required",
+                        "label" => "Campo obrigatório",
+                        "type" => "checkbox",
+                        "required" => false
+                    ],
+                    [
+                        "name" => "values",
+                        "label" => "Valores",
+                        "type" => "select",
+                        "required" => false,
+                    ],
+                ]
+            ],
         ]);
     }
 }

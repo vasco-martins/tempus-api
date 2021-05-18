@@ -1,0 +1,105 @@
+<?php
+
+namespace App\Http\Livewire\#--MODEL-NAME--#;
+
+use App\Http\Traits\WithModal;
+#--MODEL-IMPORT--#
+use Livewire\Component;
+use Livewire\WithPagination;
+
+class Index extends Component
+{
+    use WithPagination, WithModal;
+
+    public $#--LOWERCASE-MODEL-NAME--#;
+    public $searchTerm = '';
+
+    protected $paginationTheme = 'bootstrap';
+
+    protected $searchColumns = [#--SEARCHABLE-FIELDS--#];
+
+    protected $listeners = ['update', 'openDestroy', 'destroy'];
+
+#--FIELDS-DECLARATION--#
+
+    public function render()
+    {
+        $searchTerm = "%$this->searchTerm%";
+
+        $#--LOWERCASE-MODEL-NAME-PLURAL--# = #--MODEL-NAME--#::query();
+
+        if (strlen($this->searchTerm) > 0) {
+            $#--LOWERCASE-MODEL-NAME-PLURAL--# = $#--LOWERCASE-MODEL-NAME-PLURAL--#->where(function ($query) use ($searchTerm) {
+                foreach ($this->searchColumns as $column) {
+                    $query->orwhere($column, 'like', $searchTerm);
+                }
+            });
+        }
+
+        $#--LOWERCASE-MODEL-NAME-PLURAL--# = $#--LOWERCASE-MODEL-NAME-PLURAL--#->latest()->paginate(8);
+
+        return view('livewire.#--LOWERCASE-MODEL-NAME-PLURAL--#.index', ['#--LOWERCASE-MODEL-NAME-PLURAL--#' => $#--LOWERCASE-MODEL-NAME-PLURAL--#]);
+    }
+
+    public function create()
+    {
+        $this->#--LOWERCASE-MODEL-NAME--# = null;
+        $this->resetErrorBag();
+        $this->emit('openModal');
+        $this->resetInputs();
+    }
+
+    public function update(#--MODEL-NAME--# $#--LOWERCASE-MODEL-NAME--#)
+    {
+        $this->#--LOWERCASE-MODEL-NAME--# = $#--LOWERCASE-MODEL-NAME--#;
+        $this->resetErrorBag();
+        $this->emit('openModal');
+        $this->resetInputs($#--LOWERCASE-MODEL-NAME--#);
+    }
+
+    public function openDestroy(#--MODEL-NAME--# $#--LOWERCASE-MODEL-NAME--#)
+    {
+        $this->#--LOWERCASE-MODEL-NAME--# = $#--LOWERCASE-MODEL-NAME--#;
+        $this->emit('openDestroyModal');
+    }
+
+    public function destroy()
+    {
+        $this->#--LOWERCASE-MODEL-NAME--#->delete();
+        $this->emit('toast-success', '#--LABEL--# removido com sucesso');
+        $this->emit('closeDestroyModal');
+    }
+
+    public function closeModal()
+    {
+        $this->emit('closeModal');
+    }
+
+    public function store()
+    {
+        $data = $this->validate($this->rules());
+
+        isset($this->#--LOWERCASE-MODEL-NAME--#)
+            ? $this->#--LOWERCASE-MODEL-NAME--#->update($data)
+            : #--MODEL-NAME--#::create($data);
+
+        $this->closeModal();
+        $this->emit('toast-success', isset($this->#--LOWERCASE-MODEL-NAME--#)
+            ? '#--LABEL--# atualizado'
+            : '#--LABEL--# criado');
+    }
+
+    private function resetInputs(#--MODEL-NAME--# $#--LOWERCASE-MODEL-NAME--# = null)
+    {
+#--RESET-INPUTS--#
+        $this->emit('clear-input');
+    }
+
+    public function rules()
+    {
+        return [
+            #--RULES--#
+        ];
+    }
+
+}

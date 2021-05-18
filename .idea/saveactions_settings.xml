@@ -3,9 +3,15 @@
   <component name="SaveActionSettings">
     <option name="actions">
       <set>
-        <option value="activate" />
+        <option value="activateOnShortcut" />
         <option value="organizeImports" />
         <option value="reformat" />
+      </set>
+    </option>
+    <option name="exclusions">
+      <set>
+        <option value="stubs" />
+        <option value="stubs/coreui/*/*.stub" />
       </set>
     </option>
   </component>

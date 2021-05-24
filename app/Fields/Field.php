@@ -12,6 +12,8 @@ abstract class Field
 
     protected ModelField $modelField;
 
+    protected bool $isSearchable = false;
+
     /**
      * Field constructor.
      * @param ModelField $modelField
@@ -26,6 +28,12 @@ abstract class Field
         return Str::lower(Str::plural($this->modelField->model->name));
     }
 
+    protected function getLowerCaseModelNameSingular(): string
+    {
+        return Str::lower(Str::singular($this->modelField->model->name));
+    }
+
+
     protected function getValidation($validationName, $default = null) {
         foreach ($this->modelField->validations as $validation) {
             if($validation->name == $validation) {
@@ -39,6 +47,7 @@ abstract class Field
     abstract public function getModalInput(): string;
     abstract public function getScripts(): string;
     abstract public function getTable(): string;
+    abstract public function getMigration(): string;
 
 
 }

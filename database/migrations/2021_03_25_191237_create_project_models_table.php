@@ -19,6 +19,7 @@ class CreateProjectModelsTable extends Migration
             $table->string('label');
             $table->boolean('soft_delete');
             $table->foreignId('project_model_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('parent_menu_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('project_id')->constrained();
             $table->timestamps();
         });

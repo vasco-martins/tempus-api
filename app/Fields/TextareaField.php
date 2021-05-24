@@ -7,6 +7,8 @@ namespace App\Fields;
 class TextareaField extends Field
 {
 
+    protected bool $isSearchable = true;
+
     public function getModalInput(): string
     {
 
@@ -33,7 +35,7 @@ class TextareaField extends Field
          quill = new Quill($refs.quillEditor, {theme: \'snow\'});
          quill.on(\'text-change\', function () {
            $dispatch(\'input\', quill.root.innerHTML);
-           @this.set(\'content\', quill.root.innerHTML)
+           @this.set(\''. $this->modelField->database_name . '\', quill.root.innerHTML)
          });
 
          window.livewire.on(\'clear-input\', function() {
@@ -77,7 +79,13 @@ class TextareaField extends Field
 
     public function getTable(): string
     {
-        $lowerCaseModelName = $this->getLowerCaseModelName();
+        $lowerCaseModelName = $this->getLowerCaseModelNameSingular();
         return "{{ \Illuminate\Support\Str::words(strip_tags($$lowerCaseModelName->" . $this->modelField->database_name . "), 10,'...')  }}";
+    }
+
+    public function getMigration(): string
+    {
+        $isRequired = $this->getValidation('required') == null|false ? '->nullable()' : '';
+        return '$table->text(\'' . $this->modelField->database_name . '\')' . $isRequired . ';';
     }
 }

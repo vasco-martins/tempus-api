@@ -2,19 +2,18 @@
 
 namespace App\Jobs;
 
-use App\Models\Log;
+use App\Fields\Field;
+use App\Helpers\FieldType;
 use App\Models\ModelField;
 use App\Models\Project;
 use App\Models\ProjectModel;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
-use Symfony\Component\ErrorHandler\Debug;
 
 class CreateLivewireComponentLogicJob implements ShouldQueue
 {
@@ -56,6 +55,7 @@ class CreateLivewireComponentLogicJob implements ShouldQueue
                 '#--LOWERCASE-MODEL-NAME--#',
                 '#--LOWERCASE-MODEL-NAME-PLURAL--#',
                 '#--LABEL--#',
+                '#--LABEL-SINGULAR--#',
                 '#--RULES--#',
                 '#--FIELDS-DECLARATION--#',
                 '#--RESET-INPUTS--#',
@@ -66,6 +66,7 @@ class CreateLivewireComponentLogicJob implements ShouldQueue
                 Str::lower($projectModel->name),
                 Str::lower(Str::plural($projectModel->name)),
                 $projectModel->label,
+                Str::singular($projectModel->label),
                 $this->buildRules($projectModel),
                 $this->buildFieldsDeclaration($projectModel),
                 $this->buildResetInputs($projectModel),
@@ -95,7 +96,7 @@ class CreateLivewireComponentLogicJob implements ShouldQueue
     private function buildRules(ProjectModel $projectModel): string {
         $str = '';
         foreach($projectModel->fields as $field) {
-            $str .= "\n\t\t'$field->database_name' => '" . $this->buildRulesArray($field) . "',";
+            $str .= "\n\t\t\t'$field->database_name' => '" . $this->buildRulesArray($field) . "',";
         }
 
         return ltrim($str);
@@ -105,11 +106,12 @@ class CreateLivewireComponentLogicJob implements ShouldQueue
     {
         $str = '';
 
-        if($field->type == 'email') {
+
+        if($field->type == FieldType::EMAIL) {
             $str .= 'email|';
         }
 
-        if($field->type == 'text' || $field->type == 'string' || $field->type == 'textarea') {
+        if($field->type == FieldType::TEXT || $field->type == FieldType::STRING || $field->type == FieldType::TEXTAREA) {
             $str .= 'string|';
         }
 
@@ -118,6 +120,10 @@ class CreateLivewireComponentLogicJob implements ShouldQueue
             switch ($validation->name) {
                 case 'required':
                     if($validation->value == 1) {
+                        if($field->type == FieldType::PASSWORD) {
+                            $str .= '\' . $this->' . Str::lower($field->model->name) . ' == null ? \'required\' : \'nullable\' . \'' ;
+                            break;
+                        }
                         $str .= 'required|';
                     }
                     break;
@@ -144,17 +150,20 @@ class CreateLivewireComponentLogicJob implements ShouldQueue
         $str = '';
 
         foreach ($projectModel->fields as $field) {
+            if($field->type == FieldType::PASSWORD) {
+                $str .= "\n\t\t\t" .'$this' . "->$field->database_name = '';";
+                continue;
+            }
             $str .= "\n\t\t\t" .'$this' . "->$field->database_name = $" . Str::lower($projectModel->name) . "->" . $field->database_name . ' ??';
             switch ($field->type) {
-                case 'string':
-                case 'textarea':
-                case 'email':
-                case 'text':
-                case 'password':
-                case 'select':
+                case FieldType::STRING:
+                case FieldType::TEXTAREA:
+                case FieldType::EMAIL:
+                case FieldType::TEXT:
+                case FieldType::SELECT:
                      $str .= "''";
                     break;
-                case 'number':
+                case FieldType::NUMBER:
                     $str .= "0";
                     break;
                 default:
@@ -169,7 +178,7 @@ class CreateLivewireComponentLogicJob implements ShouldQueue
     private function buildSearchableFields(ProjectModel $projectModel): string
     {
         $str = '';
-        $fieldTypes = ['string', 'text', 'textarea', 'email'];
+        $fieldTypes = [FieldType::STRING, FieldType::TEXT, FieldType::TEXTAREA, FieldType::EMAIL];
 
         foreach ($projectModel->fields as $field) {
          //   if(in_array(Str::lower($field->type), $fieldTypes)) {

@@ -7,6 +7,10 @@ use App\Http\Resources\ProjectCollection;
 use App\Jobs\CreateProjectJob;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use PhpZip\ZipFile;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
+use ZipArchive;
 
 class ProjectController extends Controller
 {
@@ -71,4 +75,25 @@ class ProjectController extends Controller
     {
         //
     }
+
+    public function download(Project $project) {
+
+        abort_unless($project->user_id == auth()->user()->id, 404);
+
+        $zipName = base_path('zipfolders/' . $project->name . '.zip');
+        $zipFile = new ZipFile();
+
+        try {
+            $zipFile->addDirRecursive($project->folder)->saveAsFile($zipName)->close();
+        } catch(\PhpZip\Exception\ZipException $e){
+           return false;
+        }
+        finally{
+            $zipFile->close();
+        }
+
+        return $zipFile->outputAsSymfonyResponse($zipName, 'application/zip');
+
+    }
+
 }

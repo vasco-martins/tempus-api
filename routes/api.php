@@ -27,9 +27,14 @@ Route::prefix('auth')->group(function () {
 
 });
 
+Route::get('projects/{project}/download', [ProjectController::class, 'download'])->middleware('auth:api')->name('projects.download');
+
+
 Route::get('builder/fields', ShowFieldsListController::class)->name('builder.fields');
 
 Route::middleware('auth:api')->group(function () {
     Route::resource('projects', ProjectController::class);
+    Route::resource('projects/{project}/parent-menus', ProjectController::class);
+
     Route::resource('project-models', ProjectModelController::class);
 });

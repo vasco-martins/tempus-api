@@ -8,6 +8,7 @@ use App\Jobs\CreateIndexViewJob;
 use App\Jobs\CreateLivewireComponentLogicJob;
 use App\Jobs\CreateLivewireComponentViewJob;
 use App\Jobs\CreateMenuJob;
+use App\Jobs\CreateMigrationsJob;
 use App\Jobs\CreateModelsJob;
 use App\Jobs\CreateRoutesJob;
 use App\Models\Project;
@@ -63,6 +64,7 @@ class ProjectModelController extends Controller
         CreateLivewireComponentLogicJob::dispatch($project);
         CreateIndexViewJob::dispatch($project);
         CreateLivewireComponentViewJob::dispatch($project);
+        CreateMigrationsJob::dispatch($project);
 
         return true;
     }

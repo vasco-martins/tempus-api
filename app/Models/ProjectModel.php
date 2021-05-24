@@ -14,6 +14,11 @@ class ProjectModel extends Model
         'name', 'label', 'soft_delete', 'project_id'
     ];
 
+    protected $dates = [
+        'created_at',
+        'updated_at',
+    ];
+
     public function project()
     {
         return $this->belongsTo(Project::class);
@@ -24,9 +29,8 @@ class ProjectModel extends Model
         return $this->hasMany(ModelField::class);
     }
 
-    public function children()
-    {
-        return $this->hasMany(ProjectModel::class);
+    public function parentMenu() {
+        return $this->belongsTo(ParentMenu::class);
     }
 
     public function father()
@@ -44,6 +48,10 @@ class ProjectModel extends Model
         return Str::ucfirst(Str::singular($this->name));
     }
 
+    public function getDatabaseNameAttribute(): string {
+        return Str::snake(Str::lower(Str::plural($this->name)));
+        }
+
     public function getControllerAttribute(): string
     {
         return 'App\\Http\\Controllers\\' . $this->controller_name . 'Controller';
@@ -53,4 +61,5 @@ class ProjectModel extends Model
     {
         return Str::plural(Str::lower($this->name));
     }
+
 }

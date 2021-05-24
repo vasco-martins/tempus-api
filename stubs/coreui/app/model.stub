@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
 #--PASSWORD-HASH-IMPORT--#
 
 class #--MODEL-NAME--# extends Model
 {
 
-    protected
-        $fillable = [
-#--FILLABLE--#
+    protected $fillable = [
+        #--FILLABLE--#
     ];
 
     #--RELATIONSHIPS--#

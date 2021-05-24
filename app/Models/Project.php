@@ -23,6 +23,10 @@ class Project extends Model
         return $this->hasMany(ProjectModel::class);
     }
 
+    public function parentMenus() {
+        return $this->hasMany(ParentMenu::class);
+    }
+
     public function plugins()
     {
         return $this->belongsToMany(Plugin::class);

@@ -33,11 +33,13 @@ class CreateProjectModel extends FormRequest
             'label' => ['required', 'string', 'min:2'],
             'soft_delete' => 'sometimes|boolean',
             'project_model_id' => ['nullable', 'exists:project_models,id'],
+            'parent_menu_id' => ['nullable', 'exists:parent_menus,id'],
             'fields' => ['nullable', 'array'],
             'fields.*.type' => ['required_with:fields', 'string'],
             'fields.*.label' => ['required_with:fields', 'string'],
             'fields.*.database_name' => ['required_with:fields', 'string'],
             'fields.*.validations' => ['required_with:fields', 'array'],
+            'fields.*.in_view' => ['nullable', 'boolean'],
         ];
     }
 }

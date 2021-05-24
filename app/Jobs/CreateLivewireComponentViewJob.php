@@ -44,6 +44,7 @@ class CreateLivewireComponentViewJob implements ShouldQueue
             $livewireComponentNamePluralAndLowerCase = Str::lower(Str::plural($projectModel->name));
             $replacement = str_replace([
                 '#--LABEL--#',
+                '#--LABEL-SINGULAR--#',
                 '#--TABLE-HEAD--#',
                 '#--LOWERCASE-MODEL-NAME-PLURAL--#',
                 '#--LOWERCASE-MODEL-NAME--#',
@@ -52,6 +53,7 @@ class CreateLivewireComponentViewJob implements ShouldQueue
                 '#--SCRIPTS--#'
             ], [
                 $projectModel->label,
+                Str::singular($projectModel->label),
                 $this->buildTableHead($projectModel),
                 Str::lower(Str::plural($projectModel->name)),
                 Str::lower($projectModel->name),

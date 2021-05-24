@@ -16,6 +16,8 @@ class FieldsController
         'text' => StringField::class,
         'textarea' => TextareaField::class,
         'number' => NumberField::class,
+        'password' => PasswordField::class,
+        'email' => EmailField::class,
     ];
 
     /**

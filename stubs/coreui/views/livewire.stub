@@ -15,7 +15,7 @@
     <div class="card card-accent-primary">
         <div class="card-header d-flex align-items-center justify-content-between">
             {{ __('Dashboard') }}
-            <button type="button" class="btn btn-primary" wire:click="create">Novo #--LABEL--#</button>
+            <button type="button" class="btn btn-primary" wire:click="create">Nova(o) #--LABEL-SINGULAR--#</button>
 
         </div>
 
@@ -56,7 +56,7 @@
                 </tbody>
             </table>
 
-            {{ $#--LOWERCASE-MODEL-NAME--#->links() }}
+            {{ $#--LOWERCASE-MODEL-NAME-PLURAL--#->links() }}
         </div>
     </div>
 
@@ -80,7 +80,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                     <button type="submit"
-                            class="btn btn-primary">{{ isset($#--LOWERCASE-MODEL-NAME--#)) ? __('Atualizar') : __('Criar') }}</button>
+                            class="btn btn-primary">{{ isset($#--LOWERCASE-MODEL-NAME--#) ? __('Atualizar') : __('Criar') }}</button>
                 </div>
                 </form>
 

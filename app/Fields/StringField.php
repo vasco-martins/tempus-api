@@ -7,6 +7,8 @@ namespace App\Fields;
 class StringField extends Field
 {
 
+    protected bool $isSearchable = true;
+
     public function getModalInput(): string
     {
 
@@ -21,8 +23,8 @@ class StringField extends Field
                         </div>
                     @enderror
             </div>';
-
     }
+
 
     public function getScripts(): string
     {
@@ -31,7 +33,14 @@ class StringField extends Field
 
     public function getTable(): string
     {
-        $lowerCaseModelName = $this->getLowerCaseModelName();
+        $lowerCaseModelName = $this->getLowerCaseModelNameSingular();
         return "{{ $$lowerCaseModelName->" . $this->modelField->database_name . " ?? '' }}";
+    }
+
+    public function getMigration(): string
+    {
+        $isRequired = $this->getValidation('required') == null|false ? '->nullable()' : '';
+
+        return '$table->string(\'' . $this->modelField->database_name . '\')' . $isRequired . ';';
     }
 }

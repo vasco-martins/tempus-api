@@ -40,13 +40,13 @@ class CreateMenuJob implements ShouldQueue
             $menuItems .= $this->generateMenuItemHtml($projectModel->resource, $projectModel->label);
         }
 
-        $stub = str_replace('#--MENU-FIELDS--#', $menuItems, $stub);
+        $stub = str_replace(['#--PROJECT-NAME--#', '#--MENU-FIELDS--#'], [$this->project->name, $menuItems], $stub);
 
-        file_put_contents($this->project->folder . '/resources/views/dashboard/shared/nav-builder.blade.php', $stub);
+        file_put_contents($this->project->folder . '/resources/views/components/navbar.blade.php', $stub);
     }
 
     private function generateMenuItemHtml(string $resource, string $name): string
     {
-        return '        <x-nav-item activeRoute="' . $resource . '/*" :route="route(\'' . $resource . '.index\')" title="' . $name . '" />' . "\n";
+        return '<x-navitem title="' . $name . '" :route="route(\'' . $resource . '.index\')" title="' . $name . '" activeRoute="' . $resource . '/*" single />' . "\n";
     }
 }

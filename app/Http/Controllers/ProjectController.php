@@ -93,7 +93,6 @@ class ProjectController extends Controller
         }
 
         return $zipFile->outputAsSymfonyResponse($zipName, 'application/zip');
-
     }
 
 }

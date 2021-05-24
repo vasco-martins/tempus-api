@@ -7,7 +7,7 @@ namespace App\Fields;
 class PasswordField extends Field
 {
 
-    protected bool $isSearchable = false;
+    public bool $isSearchable = false;
 
     public function getModalInput(): string
     {

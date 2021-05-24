@@ -12,7 +12,7 @@ abstract class Field
 
     protected ModelField $modelField;
 
-    protected bool $isSearchable = false;
+    public bool $isSearchable = false;
 
     /**
      * Field constructor.

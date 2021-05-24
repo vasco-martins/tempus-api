@@ -4,6 +4,7 @@
 namespace App\Fields;
 
 
+use App\Helpers\FieldType;
 use App\Models\ModelField;
 
 class FieldsController
@@ -12,12 +13,20 @@ class FieldsController
     private ModelField $modelField;
 
     private array $fields = [
-        'string' => StringField::class,
-        'text' => StringField::class,
-        'textarea' => TextareaField::class,
-        'number' => NumberField::class,
-        'password' => PasswordField::class,
-        'email' => EmailField::class,
+        FieldType::STRING => StringField::class,
+        FieldType::TEXT => StringField::class,
+        FieldType::TEXTAREA => TextareaField::class,
+        FieldType::NUMBER => NumberField::class,
+        FieldType::PASSWORD => PasswordField::class,
+        FieldType::EMAIL => EmailField::class,
+    ];
+
+    public array $searchable = [
+        FieldType::STRING,
+        FieldType::TEXT,
+        FieldType::TEXTAREA,
+        FieldType::NUMBER,
+        FieldType::EMAIL,
     ];
 
     /**

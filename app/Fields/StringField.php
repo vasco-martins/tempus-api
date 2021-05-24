@@ -7,7 +7,7 @@ namespace App\Fields;
 class StringField extends Field
 {
 
-    protected bool $isSearchable = true;
+    public bool $isSearchable = true;
 
     public function getModalInput(): string
     {

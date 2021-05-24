@@ -18,6 +18,7 @@ class CreateModelFieldsTable extends Migration
             $table->string('label');
             $table->string('type');
             $table->string('database_name');
+            $table->boolean('is_searchable')->default(false);
             $table->foreignId('project_model_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('references_id')->nullable()->constrained('project_models')->nullOnDelete()->cascadeOnUpdate();
             $table->boolean('in_view')->default(true);

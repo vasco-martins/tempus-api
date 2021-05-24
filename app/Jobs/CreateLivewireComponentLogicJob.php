@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Fields\Field;
+use App\Fields\FieldsController;
 use App\Helpers\FieldType;
 use App\Models\ModelField;
 use App\Models\Project;
@@ -178,12 +179,11 @@ class CreateLivewireComponentLogicJob implements ShouldQueue
     private function buildSearchableFields(ProjectModel $projectModel): string
     {
         $str = '';
-        $fieldTypes = [FieldType::STRING, FieldType::TEXT, FieldType::TEXTAREA, FieldType::EMAIL];
-
         foreach ($projectModel->fields as $field) {
-         //   if(in_array(Str::lower($field->type), $fieldTypes)) {
+            $fieldController = new FieldsController($field);
+             if($fieldController->getField()->isSearchable && $field->is_searchable) {
                 $str .= "'$field->database_name',";
-   //         }
+             }
         }
         return $str;
     }

@@ -36,6 +36,7 @@ class CreateProjectModel extends FormRequest
             'parent_menu_id' => ['nullable', 'exists:parent_menus,id'],
             'fields' => ['nullable', 'array'],
             'fields.*.type' => ['required_with:fields', 'string'],
+            'fields.*.is_searchable' => ['nullable', 'boolean'],
             'fields.*.label' => ['required_with:fields', 'string'],
             'fields.*.database_name' => ['required_with:fields', 'string'],
             'fields.*.validations' => ['required_with:fields', 'array'],

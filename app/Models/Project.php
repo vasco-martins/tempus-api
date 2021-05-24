@@ -37,6 +37,11 @@ class Project extends Model
         return $this->id . '-' . Str::slug($this->name);
     }
 
+    public function getFilenameAttribute(): string
+    {
+        return Str::slug($this->name);
+    }
+
     public function getFolderAttribute()
     {
         return base_path('projects/' . $this->getSlugAttribute());

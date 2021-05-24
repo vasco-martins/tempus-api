@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Projects\CreateProjectRequest;
 use App\Http\Resources\ProjectCollection;
+use App\Jobs\CreateEnvExampleJob;
 use App\Jobs\CreateProjectJob;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use PhpZip\ZipFile;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
@@ -37,6 +39,7 @@ class ProjectController extends Controller
         $project = auth()->user()->projects()->create($data);
 
         CreateProjectJob::dispatch($project);
+        CreateEnvExampleJob::dispatch($project);
 
         return new \App\Http\Resources\Project($project);
     }
@@ -76,11 +79,14 @@ class ProjectController extends Controller
         //
     }
 
+    /**
+     * @throws \PhpZip\Exception\ZipException
+     */
     public function download(Project $project) {
 
         abort_unless($project->user_id == auth()->user()->id, 404);
 
-        $zipName = base_path('zipfolders/' . $project->name . '.zip');
+        $zipName = base_path('zipfolders/' . $project->filename . '.zip');
         $zipFile = new ZipFile();
 
         try {

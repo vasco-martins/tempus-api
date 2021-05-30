@@ -173,6 +173,23 @@ class CreateLivewireComponentLogicJob implements ShouldQueue
             $str .= ';';
         }
 
+        $hasSelect = false;
+        foreach ($projectModel->fields as $field) {
+            if($field->type == FieldType::SELECT) {
+
+                $value = '$this->emit(\'changeInput\', [\'id\' => \'' . $field->database_name .'\', \'value\' => $' . Str::lower($projectModel->name) .'->' . $field->database_name .']);' . "\n\t\t\t";
+
+                if($hasSelect) {
+                   $str .= $value;
+                } else {
+                    $str .=  "\n\t\t" . 'if($' . Str::lower($projectModel->name) . ') {' . "\n\t\t\t";
+                    $str .= $value;
+                    $str .= '}';
+                    $hasSelect = true;
+                }
+            }
+        }
+
         return $str;
     }
 

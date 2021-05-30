@@ -11,6 +11,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Str;
+use Psy\Util\Json;
 
 class CreateModelsJob implements ShouldQueue
 {
@@ -42,12 +43,14 @@ class CreateModelsJob implements ShouldQueue
                 '#--PASSWORD-HASH-IMPORT--#',
                 '#--MODEL-NAME--#',
                 '#--FILLABLE--#',
-                '#--HASH_FUNCTIONS--#'
+                '#--HASH_FUNCTIONS--#',
+                '#--SELECT-CONSTANTS--#'
             ], [
                 $this->generatePasswordHashImport($projectModel),
                 $projectModel->name,
                 $this->generateFillable($projectModel),
-                $this->generateHashFunctions($projectModel)
+                $this->generateHashFunctions($projectModel),
+                $this->generateSelectConstants($projectModel)
             ], $stub);
 
             file_put_contents($this->project->folder. '/app/Models/' . $projectModel->name . '.php', $replacement);
@@ -79,7 +82,7 @@ class CreateModelsJob implements ShouldQueue
     {
         $str = '';
         foreach($projectModel->fields as $field) {
-            if($field->type == "password") {
+            if($field->type == FieldType::PASSWORD) {
                 $camelCaseWithUCFirst = ucfirst(Str::camel($field->database_name));
                 $str .= 'public function set' . $camelCaseWithUCFirst . 'Attribute($value) {
         if(!empty($value)) {
@@ -88,6 +91,24 @@ class CreateModelsJob implements ShouldQueue
     }' . "\n\n\t";
             }
         }
+        return $str;
+    }
+
+    private function generateSelectConstants(ProjectModel $projectModel): string
+    {
+        $str = '';
+        $selectFields = $projectModel->fields()->where('type', FieldType::SELECT)->get();
+
+        foreach ($selectFields as $field) {
+            $valuesField = $field->validations()->where('name', 'values')->first();
+            $valuesField = (array) json_decode($valuesField->value);
+            $str .= 'public const ' . Str::upper($field->database_name) . '_SELECT = [' . "\n\t\t";
+            foreach($valuesField as $valueField) {
+                $str .= '"' . $valueField->name . '" => "' . $valueField->label . '"' . "\n\t\t";
+            }
+            $str .= "];\n\n\t";
+        }
+
         return $str;
     }
 }

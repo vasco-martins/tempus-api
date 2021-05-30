@@ -18,7 +18,8 @@
         "laravel/passport": "^10.1",
         "laravel/tinker": "^2.5",
         "nelexa/zip": "^4.0",
-        "symfony/filesystem": "^5.2"
+        "symfony/filesystem": "^5.2",
+        "ext-json": "*"
     },
     "require-dev": {
         "beyondcode/laravel-er-diagram-generator": "^1.5",

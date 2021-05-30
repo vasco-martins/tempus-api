@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class #--MODEL-NAME--# extends Model
 {
 
+    #--SELECT-CONSTANTS--#
+
     protected $fillable = [
         #--FILLABLE--#
     ];

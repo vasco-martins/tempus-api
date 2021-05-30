@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ParentMenu\CreateParentMenuRequest;
-use App\Http\Resources\ParentMenu;
+use App\Http\Resources\ProjectModel;
 use App\Jobs\CreateMenuJob;
 use App\Models\Project;
 use Illuminate\Http\Request;
@@ -13,67 +13,69 @@ class ParentMenuController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return ParentMenu
+     * @return ProjectModel
      */
-    public function index(Project $project): ParentMenu
+    public function index(Project $project): ProjectModel
     {
-        return new ParentMenu($project->parentMenus);
+        return new ProjectModel($project->parentMenus);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param \App\Http\Requests\ParentMenu\CreateParentMenuRequest $request
-     * @return \App\Http\Resources\ParentMenu
+     * @param \App\Models\Project $project
+     * @return \App\Http\Resources\ProjectModel
      */
-    public function store(CreateParentMenuRequest $request, Project $project): ParentMenu
+    public function store(CreateParentMenuRequest $request, Project $project): ProjectModel
     {
         $data = $request->validated();
+        $data['is_parent'] = 1;
 
-        $parentMenu = \App\Models\ParentMenu::create($data);
+        $projectModel = \App\Models\ProjectModel::create($data);
 
         CreateMenuJob::dispatch($project);
 
-        return new ParentMenu($parentMenu);
+        return new ProjectModel($projectModel);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\ParentMenu $parentMenu
-     * @return \App\Http\Resources\ParentMenu
+     * @param \App\Models\ProjectModel $projectModel
+     * @return ProjectModel
      */
-    public function show(\App\Models\ParentMenu $parentMenu): ParentMenu
+    public function show(\App\Models\ProjectModel $projectModel): ProjectModel
     {
-        return new ParentMenu($parentMenu);
+        return new ProjectModel($projectModel);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param \App\Http\Requests\ParentMenu\CreateParentMenuRequest $request
-     * @param \App\Models\ParentMenu $parentMenu
-     * @return \App\Http\Resources\ParentMenu
+     * @param \App\Models\ProjectModel $projectModel
+     * @return \App\Http\Resources\ProjectModel
      */
-    public function update(CreateParentMenuRequest $request, \App\Models\ParentMenu $parentMenu): ParentMenu
+    public function update(CreateParentMenuRequest $request, \App\Models\ProjectModel $projectModel): ProjectModel
     {
         $data = $request->validated();
 
-        $parentMenu->update($data);
+        $projectModel->update($data);
 
-        return new ParentMenu($parentMenu);
+        return new ProjectModel($projectModel);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\ParentMenu $parentMenu
+     * @param \App\Models\ProjectModel $projectModel
      * @return int
      * @throws \Exception
      */
-    public function destroy(\App\Models\ParentMenu $parentMenu)
+    public function destroy(\App\Models\ProjectModel $projectModel)
     {
-        $parentMenu->delete();
+        $projectModel->delete();
 
         return 1;
     }

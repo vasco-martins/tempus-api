@@ -19,6 +19,7 @@ class FieldsController
         FieldType::NUMBER => NumberField::class,
         FieldType::PASSWORD => PasswordField::class,
         FieldType::EMAIL => EmailField::class,
+        FieldType::SELECT => SelectField::class,
     ];
 
     public array $searchable = [
@@ -27,6 +28,7 @@ class FieldsController
         FieldType::TEXTAREA,
         FieldType::NUMBER,
         FieldType::EMAIL,
+        FieldType::SELECT,
     ];
 
     /**

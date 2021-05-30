@@ -34,19 +34,27 @@ class CreateMenuJob implements ShouldQueue
     {
         $stub = file_get_contents(base_path('stubs/coreui/views/menu.stub'));
 
-        $menuItems = '';
-
-        foreach ($this->project->projectModels as $projectModel) {
-            $menuItems .= $this->generateMenuItemHtml($projectModel->resource, $projectModel->label);
-        }
-
-        $stub = str_replace(['#--PROJECT-NAME--#', '#--MENU-FIELDS--#'], [$this->project->name, $menuItems], $stub);
+        $stub = str_replace(['#--PROJECT-NAME--#', '#--MENU-FIELDS--#'], [$this->project->name, $this->generateMenu($this->project->projectModelsWithoutParents)], $stub);
 
         file_put_contents($this->project->folder . '/resources/views/components/navbar.blade.php', $stub);
     }
 
-    private function generateMenuItemHtml(string $resource, string $name): string
+    private function generateMenu($projectModels): string {
+        $str = '';
+        foreach ($projectModels as $projectModel) {
+            if($projectModel->is_parent) {
+                $str .= '<x-navitem title="' . $projectModel->label . '" title="' . $projectModel->label . '">' . "\n\t";
+                $str .= $this->generateMenu($projectModel->projectModels);
+                $str .= '<x-navitem />';
+                continue;
+            }
+            $str .= '<x-navitem title="' . $projectModel->label . '" :route="route(\'' . $projectModel->resource . '.index\')" title="' . $projectModel->label . '" activeRoute="' . $projectModel->resource . '/*" single />' . "\n\t";
+        }
+        return $str;
+    }
+
+    private function generateMenuItemHtml(string $resource, string $name, bool $isSingle): string
     {
-        return '<x-navitem title="' . $name . '" :route="route(\'' . $resource . '.index\')" title="' . $name . '" activeRoute="' . $resource . '/*" single />' . "\n";
+        return '<x-navitem title="' . $name . '" :route="route(\'' . $resource . '.index\')" title="' . $name . '" activeRoute="' . $resource . '/*" ' . $isSingle ? 'single' : '' . ' />' . "\n";
     }
 }

@@ -31,6 +31,9 @@
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@1.7.2/dist/css/tom-select.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@1.7.2/dist/js/tom-select.complete.min.js"></script>
+
 
 </head>
 <body class="c-app">
@@ -76,6 +79,17 @@
     window.livewire.on('toast-error', (message) => {
         toastr.error(message)
     })
+
+    window.livewire.on('changeInput', ({id, value}) => {
+        const input = document.querySelector('#' + id);
+        input.value = value;
+        const evt = document.createEvent('HTMLEvents');
+        evt.initEvent('change', false, true);
+        input.dispatchEvent(evt);
+    });
+
+
+
 </script>
 @stack('script')
 @yield('scripts')

@@ -15,12 +15,13 @@ class CreateProjectModelsTable extends Migration
     {
         Schema::create('project_models', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->string('label');
-            $table->boolean('soft_delete');
+            $table->boolean('is_parent')->default(false);
+            $table->boolean('soft_delete')->default(true);
             $table->foreignId('project_model_id')->nullable()->constrained()->nullOnDelete();
-            $table->foreignId('parent_menu_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('project_id')->constrained();
+            $table->integer('order')->default(0);
             $table->timestamps();
         });
     }

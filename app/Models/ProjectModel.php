@@ -11,7 +11,7 @@ class ProjectModel extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'label', 'soft_delete', 'project_id',
+        'name', 'label', 'soft_delete', 'project_id', 'order', 'is_parent', 'project_model_id'
     ];
 
     protected $dates = [
@@ -29,8 +29,12 @@ class ProjectModel extends Model
         return $this->hasMany(ModelField::class);
     }
 
+    public function projectModels() {
+        return $this->hasMany(ProjectModel::class);
+    }
+
     public function parentMenu() {
-        return $this->belongsTo(ParentMenu::class);
+        return $this->belongsTo(ProjectModel::class, 'project_model_id');
     }
 
     public function father()

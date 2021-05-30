@@ -24,7 +24,7 @@ class CreateParentMenuRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:2|max:20',
+            'label' => 'required|min:2|max:20',
             'project_id' => 'required|exists:projects,id'
         ];
     }

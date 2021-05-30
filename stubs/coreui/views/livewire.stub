@@ -127,6 +127,7 @@
             $('#destroyModal').modal('hide');
         });
 
+
         #--SCRIPTS--#
     </script>
 @endpush

@@ -16,7 +16,7 @@ class CreateParentMenusTable extends Migration
         Schema::create('parent_menus', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('project_id')->constrained()->nullOnDelete();
+            $table->foreignId('project_id')->nullable()->constrained();
             $table->timestamps();
         });
     }

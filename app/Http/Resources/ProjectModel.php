@@ -2,23 +2,22 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-/** @mixin \App\Models\Project */
-class Project extends JsonResource
+class ProjectModel extends JsonResource
 {
     /**
-     * @param Request $request
+     * Transform the resource into an array.
+     *
+     * @param  \Illuminate\Http\Request  $request
      * @return array
      */
-    public function toArray($request): array
+    public function toArray($request)
     {
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'project_models' => $this->projectModels,
-            'parent_menus' => $this->parentMenus,
+            'label' => $this->label,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

@@ -20,11 +20,15 @@ class Project extends Model
 
     public function projectModels()
     {
-        return $this->hasMany(ProjectModel::class);
+        return $this->hasMany(ProjectModel::class)->where('is_parent', 0);
+    }
+
+    public function projectModelsWithoutParents() {
+        return $this->hasMany(ProjectModel::class)->whereDoesntHave('parentMenu');
     }
 
     public function parentMenus() {
-        return $this->hasMany(ParentMenu::class);
+        return $this->hasMany(ProjectModel::class)->where('is_parent', 1);
     }
 
     public function plugins()

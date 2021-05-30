@@ -34,7 +34,7 @@ Route::get('builder/fields', ShowFieldsListController::class)->name('builder.fie
 
 Route::middleware('auth:api')->group(function () {
     Route::resource('projects', ProjectController::class);
-    Route::resource('projects/{project}/parent-menus', ProjectController::class);
+    Route::resource('projects/{project}/parent-menus', \App\Http\Controllers\ParentMenuController::class);
 
     Route::resource('project-models', ProjectModelController::class);
 });

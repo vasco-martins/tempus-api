@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Builder\CheckIfModelNameExistsController;
 use App\Http\Controllers\Builder\ShowFieldsListController;
+use App\Http\Controllers\Builder\ShowParentMenusController;
+use App\Http\Controllers\Builder\ShowProjectModelNamesController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProjectModelController;
 use Illuminate\Support\Facades\Route;
@@ -27,14 +30,18 @@ Route::prefix('auth')->group(function () {
 
 });
 
-Route::get('projects/{project}/download', [ProjectController::class, 'download'])->middleware('auth:api')->name('projects.download');
+Route::get('projects/{hash}/download', [ProjectController::class, 'download'])->name('projects.download');
 
 
 Route::get('builder/fields', ShowFieldsListController::class)->name('builder.fields');
+Route::post('builder/projectModelNames', ShowProjectModelNamesController::class)->middleware('auth:api')->name('builder.checkModel');
+Route::post('builder/parentMenuNames', ShowParentMenusController::class)->middleware('auth:api')->name('builder.parentMenuNames');
+
 
 Route::middleware('auth:api')->group(function () {
     Route::resource('projects', ProjectController::class);
     Route::resource('projects/{project}/parent-menus', \App\Http\Controllers\ParentMenuController::class);
+    Route::get('projects/{project}/menu', [ProjectController::class, 'showMenu']);
 
     Route::resource('project-models', ProjectModelController::class);
 });

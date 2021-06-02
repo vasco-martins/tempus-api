@@ -82,9 +82,8 @@ class ProjectController extends Controller
     /**
      * @throws \PhpZip\Exception\ZipException
      */
-    public function download(Project $project) {
-
-        abort_unless($project->user_id == auth()->user()->id, 404);
+    public function download(string $hash) {
+        $project = Project::where('hash', $hash)->first();
 
         $zipName = base_path('zipfolders/' . $project->filename . '.zip');
         $zipFile = new ZipFile();
@@ -98,7 +97,11 @@ class ProjectController extends Controller
             $zipFile->close();
         }
 
-        return $zipFile->outputAsSymfonyResponse($zipName, 'application/zip');
+        return response()->download(base_path('zipfolders/' . $project->filename . '.zip'));
+    }
+
+    public function showMenu(Project $project ) {
+
     }
 
 }

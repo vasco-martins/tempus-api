@@ -19,6 +19,9 @@ class ProjectModel extends Model
         'updated_at',
     ];
 
+    protected $with=['projectModels'];
+
+
     public function project()
     {
         return $this->belongsTo(Project::class);
@@ -44,7 +47,7 @@ class ProjectModel extends Model
 
     public function getNameAttribute($value)
     {
-        return Str::singular(str_replace(' ', '', ucwords($value)));
+        return (str_replace(' ', '', ucwords($value)));
     }
 
     public function getControllerNameAttribute(): string

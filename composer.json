@@ -19,7 +19,8 @@
         "laravel/tinker": "^2.5",
         "nelexa/zip": "^4.0",
         "symfony/filesystem": "^5.2",
-        "ext-json": "*"
+        "ext-json": "*",
+      "ext-mcrypt": "*"
     },
     "require-dev": {
         "beyondcode/laravel-er-diagram-generator": "^1.5",

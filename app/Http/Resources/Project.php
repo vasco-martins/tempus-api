@@ -21,6 +21,9 @@ class Project extends JsonResource
             'parent_menus' => $this->parentMenus,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            'download_link' => $this->download_link,
+            'hash' => $this->hash,
+            'menu' => $this->menu,
         ];
     }
 }

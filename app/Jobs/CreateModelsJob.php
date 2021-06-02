@@ -44,13 +44,15 @@ class CreateModelsJob implements ShouldQueue
                 '#--MODEL-NAME--#',
                 '#--FILLABLE--#',
                 '#--HASH_FUNCTIONS--#',
-                '#--SELECT-CONSTANTS--#'
+                '#--SELECT-CONSTANTS--#',
+                '#--TABLE-NAME--#'
             ], [
                 $this->generatePasswordHashImport($projectModel),
                 $projectModel->name,
                 $this->generateFillable($projectModel),
                 $this->generateHashFunctions($projectModel),
-                $this->generateSelectConstants($projectModel)
+                $this->generateSelectConstants($projectModel),
+                $projectModel->database_name
             ], $stub);
 
             file_put_contents($this->project->folder. '/app/Models/' . $projectModel->name . '.php', $replacement);
@@ -104,7 +106,7 @@ class CreateModelsJob implements ShouldQueue
             $valuesField = (array) json_decode($valuesField->value);
             $str .= 'public const ' . Str::upper($field->database_name) . '_SELECT = [' . "\n\t\t";
             foreach($valuesField as $valueField) {
-                $str .= '"' . $valueField->name . '" => "' . $valueField->label . '"' . "\n\t\t";
+                $str .= '"' . $valueField->name . '" => "' . $valueField->label . '"' . ",\n\t\t";
             }
             $str .= "];\n\n\t";
         }

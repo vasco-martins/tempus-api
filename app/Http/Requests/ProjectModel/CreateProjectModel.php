@@ -30,7 +30,7 @@ class CreateProjectModel extends FormRequest
             'name' => ['required', 'string', 'min:3', Rule::unique('project_models')->where(function ($query) {
                 return $query->where('project_id', $this->project_id);
             })],
-            'label' => ['required', 'string', 'min:2'],
+            'label' => ['required', 'string', 'min:1'],
             'soft_delete' => 'sometimes|boolean',
             'project_model_id' => ['nullable', 'exists:project_models,id'],
             'parent_menu_id' => ['nullable', 'exists:parent_menus,id'],

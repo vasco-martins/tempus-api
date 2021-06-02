@@ -54,6 +54,14 @@ class ProjectModelController extends Controller
 
         foreach ($data['fields'] as $fieldData) {
             $field = $model->fields()->create($fieldData);
+
+            foreach($fieldData['validations'] as $key=>$validation) {
+                if($validation['name'] == "values") {
+                    $validation['value'] = json_encode($validation['value']);
+                    $fieldData['validations'][$key] = $validation;
+                }
+            }
+
             $field->validations()->createMany($fieldData['validations']);
         }
 

@@ -10,8 +10,21 @@ class Project extends Model
 
     protected $fillable = [
         'name',
-        'user_id'
+        'user_id',
+        'hash'
     ];
+
+
+
+    public static function boot() {
+        parent::boot();
+
+        static::creating(function (Project $project) {
+            $project->hash = md5(uniqid($project->name . $project->id . date('Ymd'), true));
+        });
+
+
+    }
 
     public function user()
     {
@@ -29,6 +42,10 @@ class Project extends Model
 
     public function parentMenus() {
         return $this->hasMany(ProjectModel::class)->where('is_parent', 1);
+    }
+
+    public function menu() {
+        return $this->hasMany(ProjectModel::class);
     }
 
     public function plugins()
@@ -49,6 +66,10 @@ class Project extends Model
     public function getFolderAttribute()
     {
         return base_path('projects/' . $this->getSlugAttribute());
+    }
+
+    public function getDownloadLinkAttribute() {
+        return route('projects.download', $this->hash);
     }
 
 }

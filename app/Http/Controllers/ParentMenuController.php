@@ -13,6 +13,7 @@ class ParentMenuController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Project $project
      * @return ProjectModel
      */
     public function index(Project $project): ProjectModel

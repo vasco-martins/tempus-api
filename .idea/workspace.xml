@@ -1,50 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8b753790-f878-4562-9790-bc258a1ab44a" name="Default Changelist" comment="Add Livewire Jobs">
-      <change afterPath="$PROJECT_DIR$/app/Fields/EmailField.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Fields/PasswordField.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Helpers/FieldType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stubs/coreui/database/migration.stub" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/blade.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/blade.xml" afterDir="false" />
+    <list default="true" id="8b753790-f878-4562-9790-bc258a1ab44a" name="Default Changelist" comment="Add menu">
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/tempus-api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/tempus-api.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Fields/Field.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Fields/Field.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Fields/FieldsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Fields/FieldsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Fields/NumberField.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Fields/NumberField.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Fields/StringField.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Fields/StringField.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Fields/TextareaField.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Fields/TextareaField.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ParentMenuController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ParentMenuController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectModelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectModelController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Requests/ProjectModel/CreateProjectModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/ProjectModel/CreateProjectModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Jobs/CreateIndexViewJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/CreateIndexViewJob.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Jobs/CreateLivewireComponentLogicJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/CreateLivewireComponentLogicJob.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Jobs/CreateLivewireComponentViewJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/CreateLivewireComponentViewJob.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Jobs/CreateMenuJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/CreateMenuJob.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Project.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Project.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Jobs/CreateModelsJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/CreateModelsJob.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Project.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Project.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/ProjectModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ProjectModel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_25_191237_create_project_models_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_25_191237_create_project_models_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/1-days/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/projects/1-days/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/1-days/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/projects/1-days/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/1-days/app/Http/Livewire/Client/Index.php" beforeDir="false" afterPath="$PROJECT_DIR$/projects/1-days/app/Http/Livewire/Client/Index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/1-days/app/Http/Livewire/School/Index.php" beforeDir="false" afterPath="$PROJECT_DIR$/projects/1-days/app/Http/Livewire/School/Index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/1-days/app/Models/Client.php" beforeDir="false" afterPath="$PROJECT_DIR$/projects/1-days/app/Models/Client.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/1-days/app/Models/School.php" beforeDir="false" afterPath="$PROJECT_DIR$/projects/1-days/app/Models/School.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/1-days/resources/views/components/navbar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/projects/1-days/resources/views/components/navbar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/1-days/resources/views/livewire/clients/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/projects/1-days/resources/views/livewire/clients/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/1-days/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/projects/1-days/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_13_092943_create_projects_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_13_092943_create_projects_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stubs/coreui/app/livewire.stub" beforeDir="false" afterPath="$PROJECT_DIR$/stubs/coreui/app/livewire.stub" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stubs/coreui/app/model.stub" beforeDir="false" afterPath="$PROJECT_DIR$/stubs/coreui/app/model.stub" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stubs/coreui/views/livewire.stub" beforeDir="false" afterPath="$PROJECT_DIR$/stubs/coreui/views/livewire.stub" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stubs/coreui/views/menu.stub" beforeDir="false" afterPath="$PROJECT_DIR$/stubs/coreui/views/menu.stub" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/coreui/app/Models/Post.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/coreui/database/migrations/2021_05_05_100408_create_posts_table.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -237,6 +209,7 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/Fields" />
+      <recent name="$PROJECT_DIR$/stubs/coreui" />
       <recent name="$PROJECT_DIR$/themes" />
       <recent name="$PROJECT_DIR$/themes/inspinia" />
     </key>
@@ -325,7 +298,14 @@
       <workItem from="1621345919692" duration="2370000" />
       <workItem from="1621416263837" duration="5870000" />
       <workItem from="1621581760946" duration="15033000" />
-      <workItem from="1621853608745" duration="4290000" />
+      <workItem from="1621853608745" duration="13728000" />
+      <workItem from="1621960591967" duration="186000" />
+      <workItem from="1621960986627" duration="3185000" />
+      <workItem from="1621964657000" duration="6518000" />
+      <workItem from="1622101461997" duration="11074000" />
+      <workItem from="1622444293499" duration="8243000" />
+      <workItem from="1622541786468" duration="2744000" />
+      <workItem from="1622627172412" duration="558000" />
     </task>
     <task id="LOCAL-00001" summary="Add some things">
       <created>1619681575637</created>
@@ -362,7 +342,35 @@
       <option name="project" value="LOCAL" />
       <updated>1621352488523</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Fix issue #5">
+      <created>1621868006256</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1621868006256</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Fix issue #6">
+      <created>1621868948035</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1621868948035</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Add CreateEnvExample Job (#2)">
+      <created>1621871137934</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1621871137934</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Add Menu Parents">
+      <created>1622361167301</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1622361167301</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -384,6 +392,11 @@
     <MESSAGE value="Add some things" />
     <MESSAGE value="Add ControllersJob and ProjectModelJob" />
     <MESSAGE value="Add Livewire Jobs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Livewire Jobs" />
+    <MESSAGE value="Fix issue #5" />
+    <MESSAGE value="Fix issue #6" />
+    <MESSAGE value="Add CreateEnvExample Job (#2)" />
+    <MESSAGE value="Add Menu Parents" />
+    <MESSAGE value="Add menu" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add menu" />
   </component>
 </project>

@@ -12,6 +12,7 @@ class CreateProjectsTable extends Migration
             $table->bigIncrements('id');
             $table->string('hash');
             $table->string('name');
+            $table->integer('deploy_status')->default(0);
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
 
             $table->timestamps();

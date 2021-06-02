@@ -9,19 +9,17 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Str;
 
-class CreateEnvExampleJob implements ShouldQueue
+class DeleteProjectJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-
-    private Project $project;
+    private $project;
 
     /**
      * Create a new job instance.
      *
-     * @return void
+     * @param Project $project
      */
     public function __construct(Project $project)
     {
@@ -36,19 +34,19 @@ class CreateEnvExampleJob implements ShouldQueue
      */
     public function handle()
     {
-        $stub = file_get_contents(base_path('stubs/coreui/.env.example.stub'));
-
-        $stub = str_replace([
-            '#--PROJECT-NAME--#',
-            '#--SANITIZED-PROJECT-NAME-LOWERCASE--#',
-            ],
-            [
-                $this->project->name,
-                $this->project->database,
-            ], $stub);
-
-        file_put_contents(
-            $this->project->folder . '/.env.example',
-            $stub);
+        if(is_dir($this->project->folder)) {
+            $this->delTree($this->project->folder);
+        }
     }
+
+    private function delTree($dir): bool
+    {
+
+        $files = array_diff(scandir($dir), array('.','..'));
+        foreach ($files as $file) {
+            (is_dir("$dir/$file")) ? $this->delTree("$dir/$file") : unlink("$dir/$file");
+        }
+        return rmdir($dir);
+    }
+
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\Builder\CheckIfModelNameExistsController;
 use App\Http\Controllers\Builder\ShowFieldsListController;
 use App\Http\Controllers\Builder\ShowParentMenusController;
 use App\Http\Controllers\Builder\ShowProjectModelNamesController;
+use App\Http\Controllers\ParentMenuController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProjectModelController;
 use Illuminate\Support\Facades\Route;
@@ -40,8 +41,10 @@ Route::post('builder/parentMenuNames', ShowParentMenusController::class)->middle
 
 Route::middleware('auth:api')->group(function () {
     Route::resource('projects', ProjectController::class);
-    Route::resource('projects/{project}/parent-menus', \App\Http\Controllers\ParentMenuController::class);
+    Route::resource('projects/{project}/parent-menus', ParentMenuController::class);
     Route::get('projects/{project}/menu', [ProjectController::class, 'showMenu']);
+    Route::get('projects/{project}/deploy', [ProjectController::class, 'deploy']);
+    Route::get('projects/{project}/deployStatus', [ProjectController::class, 'showDeployStatus']);
 
     Route::resource('project-models', ProjectModelController::class);
 });

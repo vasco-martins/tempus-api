@@ -39,7 +39,7 @@ class CreateProjectModel extends FormRequest
             'fields.*.is_searchable' => ['nullable', 'boolean'],
             'fields.*.label' => ['required_with:fields', 'string'],
             'fields.*.database_name' => ['required_with:fields', 'string'],
-            'fields.*.validations' => ['required_with:fields', 'array'],
+            'fields.*.validations' => ['nullable', 'array'],
             'fields.*.in_view' => ['nullable', 'boolean'],
         ];
     }

@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProjectModel\CreateProjectModel;
 use App\Jobs\CreateControllersJob;
+use App\Jobs\CreateEnvExampleJob;
 use App\Jobs\CreateIndexViewJob;
 use App\Jobs\CreateLivewireComponentLogicJob;
 use App\Jobs\CreateLivewireComponentViewJob;
 use App\Jobs\CreateMenuJob;
 use App\Jobs\CreateMigrationsJob;
 use App\Jobs\CreateModelsJob;
+use App\Jobs\CreateProjectJob;
 use App\Jobs\CreateRoutesJob;
+use App\Jobs\DeleteProjectJob;
 use App\Models\Project;
 use App\Models\ProjectModel;
 use Illuminate\Http\Request;
@@ -25,6 +28,21 @@ class ProjectModelController extends Controller
     public function index()
     {
         //
+    }
+
+    private function executeProjectJob(Project $project) {
+        $project->update(['deploy_status' => 0]);
+        DeleteProjectJob::dispatch($project);
+        CreateProjectJob::dispatch($project);
+        CreateEnvExampleJob::dispatch($project);
+        CreateRoutesJob::dispatch($project);
+        CreateControllersJob::dispatch($project);
+        CreateModelsJob::dispatch($project);
+        CreateMenuJob::dispatch($project);
+        CreateLivewireComponentLogicJob::dispatch($project);
+        CreateIndexViewJob::dispatch($project);
+        CreateLivewireComponentViewJob::dispatch($project);
+        CreateMigrationsJob::dispatch($project);
     }
 
     /**
@@ -65,14 +83,7 @@ class ProjectModelController extends Controller
             $field->validations()->createMany($fieldData['validations']);
         }
 
-        CreateRoutesJob::dispatch($project);
-        CreateControllersJob::dispatch($project);
-        CreateModelsJob::dispatch($project);
-        CreateMenuJob::dispatch($project);
-        CreateLivewireComponentLogicJob::dispatch($project);
-        CreateIndexViewJob::dispatch($project);
-        CreateLivewireComponentViewJob::dispatch($project);
-        CreateMigrationsJob::dispatch($project);
+        $this->executeProjectJob($project);
 
         return true;
     }
@@ -117,8 +128,12 @@ class ProjectModelController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(ProjectModel $projectModel)
     {
-        //
+        $project = $projectModel->project;
+        $projectModel->delete();
+
+        $this->executeProjectJob($project);
+        return true;
     }
 }

@@ -6,6 +6,8 @@ use App\Http\Requests\Projects\CreateProjectRequest;
 use App\Http\Resources\ProjectCollection;
 use App\Jobs\CreateEnvExampleJob;
 use App\Jobs\CreateProjectJob;
+use App\Jobs\DeleteProjectJob;
+use App\Jobs\DeployProjectJob;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -38,6 +40,7 @@ class ProjectController extends Controller
 
         $project = auth()->user()->projects()->create($data);
 
+        DeleteProjectJob::dispatch($project);
         CreateProjectJob::dispatch($project);
         CreateEnvExampleJob::dispatch($project);
 
@@ -102,6 +105,26 @@ class ProjectController extends Controller
 
     public function showMenu(Project $project ) {
 
+    }
+
+    public function deploy(Project $project) {
+
+        if($project->deploy_status == 0 ) {
+            $project->update(['deploy_status' => 0]);
+            DeployProjectJob::dispatch($project);
+        }
+
+        return true;
+    }
+
+    public function showDeployStatus(Project $project){
+        $url = count(Project::DEPLOY_STATUS) == ($project->deploy_status + 1) ? $project->deploy_url : null;
+        $percentage = round(( $project->deploy_status + 1) / count(Project::DEPLOY_STATUS) * 100);
+        return response()->json([
+            'message' => Project::DEPLOY_STATUS[$project->deploy_status],
+            'url' => $url,
+            'percentage' => $percentage,
+        ]);
     }
 
 }

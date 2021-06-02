@@ -56,6 +56,10 @@ return [
 
     'asset_url' => env('ASSET_URL', null),
 
+    'project_deploy_path' => env('PROJECT_DEPLOY_PATH', null),
+    'project_db_username' => env('PROJECT_DB_USERNAME', null),
+    'project_db_password' => env('PROJECT_DB_PASSWORD', null),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone

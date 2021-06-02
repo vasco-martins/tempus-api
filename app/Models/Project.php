@@ -11,10 +11,20 @@ class Project extends Model
     protected $fillable = [
         'name',
         'user_id',
-        'hash'
+        'hash',
+        'deploy_status'
     ];
 
-
+    public const DEPLOY_STATUS = [
+         'A iniciar o processo',
+         'A preparar o ambiente',
+         'A criar a base de dados',
+         'A criar a pasta do projeto',
+         'A gerar os ficheiros de configuração',
+         'A instalar os ficheiros de configuração',
+         'A realizar as migrações',
+         'Pronto para testar!'
+    ];
 
     public static function boot() {
         parent::boot();
@@ -63,6 +73,10 @@ class Project extends Model
         return Str::slug($this->name);
     }
 
+    public function getDatabaseAttribute(): string {
+        return Str::slug($this->name);
+    }
+
     public function getFolderAttribute()
     {
         return base_path('projects/' . $this->getSlugAttribute());
@@ -71,5 +85,9 @@ class Project extends Model
     public function getDownloadLinkAttribute() {
         return route('projects.download', $this->hash);
     }
+
+    public function getDeployUrlAttribute() {
+        return 'http://' . $this->slug . '.test';
+     }
 
 }

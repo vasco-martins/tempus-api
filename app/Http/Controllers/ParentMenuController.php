@@ -35,6 +35,7 @@ class ParentMenuController extends Controller
 
         $projectModel = \App\Models\ProjectModel::create($data);
 
+        $project->update(['deploy_status' => 0]);
         CreateMenuJob::dispatch($project);
 
         return new ProjectModel($projectModel);

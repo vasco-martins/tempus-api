@@ -33,7 +33,7 @@ class DeployProjectJob implements ShouldQueue
     public function __construct(Project $project)
     {
         $this->project = $project;
-        $this->database = $this->project->id . '_' . Str::slug($this->project->name);
+        $this->database = $this->project->id . '_' . Str::slug($this->project->name, '_');
         $this->path = config('app.project_deploy_path') . $this->project->slug;
     }
 

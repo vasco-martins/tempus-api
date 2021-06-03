@@ -42,7 +42,8 @@ Route::post('builder/parentMenuNames', ShowParentMenusController::class)->middle
 
 Route::middleware('auth:api')->group(function () {
     Route::resource('projects', ProjectController::class);
-    Route::resource('projects/{project}/parent-menus', ParentMenuController::class);
+    Route::post('projects/{project}/parent-menus', [ParentMenuController::class, 'store']);
+    Route::patch('projects/{project}/parent-menus/{projectModel}', [ParentMenuController::class, 'update']);
     Route::get('projects/{project}/menu', [ProjectController::class, 'showMenu']);
     Route::post('projects/{project}/menu/reorder', [MenuController::class, 'reorder']);
 

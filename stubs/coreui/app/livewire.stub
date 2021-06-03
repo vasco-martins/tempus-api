@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\#--MODEL-NAME--#;
+namespace App\Http\Livewire\#--LIVEWIRE-IMPORT--#;
 
 use App\Http\Traits\WithModal;
 #--MODEL-IMPORT--#

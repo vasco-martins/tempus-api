@@ -95,12 +95,14 @@ class ProjectModelController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @param ProjectModel $projectModel
+     * @return ProjectModel
      */
-    public function show($id)
+    public function show(ProjectModel $projectModel): ProjectModel
     {
-        //
+        $projectModel->load(['fields', 'fields.validations']);
+
+        return $projectModel;
     }
 
     /**
@@ -117,13 +119,41 @@ class ProjectModelController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @param \App\Http\Requests\ProjectModel\CreateProjectModel $request
+     * @param \App\Models\ProjectModel $projectModel
+     * @return void
      */
-    public function update(Request $request, $id)
+    public function update(CreateProjectModel $request, ProjectModel $projectModel)
     {
-        //
+        $data = $request->validated();
+        $project = Project::find($data['project_id']);
+
+        if($projectModel->project_model_id != $data['project_model_id']) {
+            $index = $project->menu()->where('project_model_id', $data['project_model_id'])->orderBy('order', 'desc')->first();
+
+            $data['order'] = $index ? $index->order + 1 : 0;
+
+        }
+
+        $projectModel->update($data);
+        $projectModel->fields()->delete();
+
+        foreach ($data['fields'] as $fieldData) {
+            $field = $projectModel->fields()->create($fieldData);
+
+            foreach($fieldData['validations'] as $key=>$validation) {
+                if($validation['name'] == "values") {
+                    $validation['value'] = json_encode($validation['value']);
+                    $fieldData['validations'][$key] = $validation;
+                }
+            }
+
+            $field->validations()->createMany($fieldData['validations']);
+        }
+
+        $this->executeProjectJob($project);
+
+        return true;
     }
 
     /**

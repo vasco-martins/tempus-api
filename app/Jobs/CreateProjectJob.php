@@ -44,9 +44,9 @@ class CreateProjectJob implements ShouldQueue
         $filesystem = new Filesystem();
         $filesystem->mirror($themeFolder, $this->project->folder);
 
-        $this->runGitCommandAndWait(['git', 'init']);
-        $this->runGitCommandAndWait(['git', 'add', '.']);
-        $this->runGitCommandAndWait(['git', 'commit', '-m', '"First commit 🚀"']);
+//        $this->runGitCommandAndWait(['git', 'init']);
+  //      $this->runGitCommandAndWait(['git', 'add', '.']);
+    //    $this->runGitCommandAndWait(['git', 'commit', '-m', '"First commit 🚀"']);
 
         Log::info('Created project directory at ' . $this->project->folder);
     }

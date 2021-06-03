@@ -62,16 +62,20 @@ class ParentMenuController extends Controller
      * Update the specified resource in storage.
      *
      * @param \App\Http\Requests\ParentMenu\CreateParentMenuRequest $request
+     * @param \App\Models\Project $project
      * @param \App\Models\ProjectModel $projectModel
-     * @return \App\Http\Resources\ProjectModel
+     * @return bool
      */
-    public function update(CreateParentMenuRequest $request, \App\Models\ProjectModel $projectModel): ProjectModel
+    public function update(CreateParentMenuRequest $request, Project $project, \App\Models\ProjectModel $projectModel): bool
     {
         $data = $request->validated();
 
         $projectModel->update($data);
 
-        return new ProjectModel($projectModel);
+        $project->update(['deploy_status' => 0]);
+        CreateMenuJob::dispatch($project);
+
+        return true;
     }
 
     /**

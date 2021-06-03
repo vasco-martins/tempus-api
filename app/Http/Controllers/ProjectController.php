@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Projects\CreateProjectRequest;
 use App\Http\Resources\ProjectCollection;
 use App\Jobs\CreateEnvExampleJob;
+use App\Jobs\CreateMenuJob;
 use App\Jobs\CreateProjectJob;
 use App\Jobs\DeleteProjectJob;
 use App\Jobs\DeployProjectJob;
@@ -43,6 +44,7 @@ class ProjectController extends Controller
         DeleteProjectJob::dispatch($project);
         CreateProjectJob::dispatch($project);
         CreateEnvExampleJob::dispatch($project);
+        CreateMenuJob::dispatch($project);
 
         return new \App\Http\Resources\Project($project);
     }

@@ -52,6 +52,7 @@ class CreateLivewireComponentLogicJob implements ShouldQueue
         foreach ($this->project->projectModels as $projectModel) {
             $replacement = str_replace([
                 '#--MODEL-IMPORT--#',
+                '#--LIVEWIRE-IMPORT--#',
                 '#--MODEL-NAME--#',
                 '#--LOWERCASE-MODEL-NAME--#',
                 '#--LOWERCASE-MODEL-NAME-PLURAL--#',
@@ -63,8 +64,9 @@ class CreateLivewireComponentLogicJob implements ShouldQueue
                 '#--SEARCHABLE-FIELDS--#'
             ], [
                 'use App\\Models\\' . $projectModel->name . ';',
+                $projectModel->controller_name,
                 $projectModel->name,
-                Str::lower($projectModel->name),
+                Str::lower(Str::singular($projectModel->name)),
                 Str::lower(Str::plural($projectModel->name)),
                 $projectModel->label,
                 Str::singular($projectModel->label),

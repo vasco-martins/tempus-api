@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8b753790-f878-4562-9790-bc258a1ab44a" name="Default Changelist" comment="Add deploy to server">
-      <change afterPath="$PROJECT_DIR$/app/Jobs/DeleteProjectJob.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Jobs/DeployProjectJob.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stubs/coreui/.env.deploy.stub" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stubs/setup.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="8b753790-f878-4562-9790-bc258a1ab44a" name="Default Changelist" comment="Add menu reorder">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/MenuController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/ReorderMenuRequest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ParentMenuController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ParentMenuController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectModelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectModelController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/ProjectModel/CreateProjectModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/ProjectModel/CreateProjectModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Jobs/CreateEnvExampleJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/CreateEnvExampleJob.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Jobs/CreateIndexViewJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/CreateIndexViewJob.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Jobs/CreateMenuJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/CreateMenuJob.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Project.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Project.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/queue.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/queue.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_13_092943_create_projects_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_13_092943_create_projects_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/ProjectModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ProjectModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/1-days/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/projects/1-days/.env.example" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/1-days/resources/views/components/navbar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/projects/1-days/resources/views/components/navbar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/1-days/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/projects/1-days/routes/web.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stubs/setup.sh" beforeDir="false" afterPath="$PROJECT_DIR$/stubs/setup.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/coreui/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/themes/coreui/database/seeders/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/coreui/database/seeders/PostSeeder.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/coreui/resources/views/components/navbar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/themes/coreui/resources/views/components/navbar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/coreui/resources/views/components/navitem.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/themes/coreui/resources/views/components/navitem.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +44,6 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/stubs/coreui/.env.example.stub" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/projects/1-days3/.env" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/app/Jobs/CreateEnvExampleJob.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/app/Jobs/DeployProjectJob.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/.env.example" root0="FORCE_HIGHLIGHTING" />
@@ -50,7 +51,6 @@
     <setting file="file://$PROJECT_DIR$/config/queue.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/stubs/coreui/.env.deploy.stub" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/config/app.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/projects/1-days3/.env.example" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="PHPCodeSnifferBlackList">
     <option name="filePaths">
@@ -321,7 +321,8 @@
       <workItem from="1622444293499" duration="8243000" />
       <workItem from="1622541786468" duration="2744000" />
       <workItem from="1622627172412" duration="3987000" />
-      <workItem from="1622648167328" duration="12859000" />
+      <workItem from="1622648167328" duration="13027000" />
+      <workItem from="1622706247750" duration="7102000" />
     </task>
     <task id="LOCAL-00001" summary="Add some things">
       <created>1619681575637</created>
@@ -400,7 +401,14 @@
       <option name="project" value="LOCAL" />
       <updated>1622628028473</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Add deploy to server">
+      <created>1622671640023</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1622671640023</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -428,6 +436,7 @@
     <MESSAGE value="Add Menu Parents" />
     <MESSAGE value="Add menu" />
     <MESSAGE value="Add deploy to server" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add deploy to server" />
+    <MESSAGE value="Add menu reorder" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add menu reorder" />
   </component>
 </project>

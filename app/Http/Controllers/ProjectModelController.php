@@ -66,6 +66,10 @@ class ProjectModelController extends Controller
         $data = $request->validated();
         $project = Project::find($data['project_id']);
 
+        $index = $project->menu()->where('project_model_id', $data['project_model_id'])->orderBy('order', 'desc')->first();
+
+        $data['order'] = $index ? $index->order + 1 : 0;
+
         $model = ProjectModel::create($data);
 
         $model->load('fields', 'fields.validations');
@@ -131,6 +135,18 @@ class ProjectModelController extends Controller
     public function destroy(ProjectModel $projectModel)
     {
         $project = $projectModel->project;
+
+        $index = $project->menu()->where('project_model_id', null)->orderBy('order', 'desc')->first();
+
+        if($index) {
+            $index = $index->order;
+
+            foreach($projectModel->projectModels as $child) {
+                $child->order = $index;
+                $index++;
+            }
+        }
+
         $projectModel->delete();
 
         $this->executeProjectJob($project);

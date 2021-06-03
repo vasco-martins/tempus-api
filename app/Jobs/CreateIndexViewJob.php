@@ -38,7 +38,7 @@ class CreateIndexViewJob implements ShouldQueue
         $stub = file_get_contents(base_path('stubs/coreui/views/index.stub'));
 
         foreach ($this->project->projectModels as $projectModel) {
-            $livewireComponentNameSingular = Str::lower(Str::singular($projectModel->name));
+            $livewireComponentNameSingular = Str::kebab($projectModel->controller_name);
             $livewireComponentNamePlural = Str::lower(Str::plural($projectModel->name));
             $replacement = str_replace([
                 '#--LABEL--#',

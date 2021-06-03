@@ -33,7 +33,7 @@ class ProjectModel extends Model
     }
 
     public function projectModels() {
-        return $this->hasMany(ProjectModel::class);
+        return $this->hasMany(ProjectModel::class)->orderBy('order');
     }
 
     public function parentMenu() {

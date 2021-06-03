@@ -33,6 +33,12 @@ class ParentMenuController extends Controller
         $data = $request->validated();
         $data['is_parent'] = 1;
 
+        // ORDER
+        $index = $project->menu()->where('project_model_id', null)->orderBy('order', 'desc')->first();
+        $index = $index->order + 1;
+
+        $data['order'] = $index;
+
         $projectModel = \App\Models\ProjectModel::create($data);
 
         $project->update(['deploy_status' => 0]);
@@ -77,6 +83,7 @@ class ParentMenuController extends Controller
      */
     public function destroy(\App\Models\ProjectModel $projectModel)
     {
+
         $projectModel->delete();
 
         return 1;

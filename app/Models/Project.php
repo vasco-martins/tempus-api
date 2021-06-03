@@ -55,7 +55,7 @@ class Project extends Model
     }
 
     public function menu() {
-        return $this->hasMany(ProjectModel::class);
+        return $this->hasMany(ProjectModel::class)->orderBy('order');
     }
 
     public function plugins()

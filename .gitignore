@@ -3,8 +3,9 @@
 /public/storage
 /storage/*.key
 /vendor
-/projects/*
+/projects
 /themes/coreui-old
+/zipfolders
 .env
 .env.backup
 .phpunit.result.cache

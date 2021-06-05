@@ -35,10 +35,11 @@ class ParentMenuController extends Controller
 
         // ORDER
         $index = $project->menu()->where('project_model_id', null)->orderBy('order', 'desc')->first();
-        $index = $index->order + 1;
 
-        $data['order'] = $index;
-
+        if($index) {
+            $index = $index->order + 1;
+            $data['order'] = $index;
+        }
         $projectModel = \App\Models\ProjectModel::create($data);
 
         $project->update(['deploy_status' => 0]);

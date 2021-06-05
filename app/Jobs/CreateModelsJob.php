@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Helpers\FieldType;
+use App\Models\ModelField;
 use App\Models\Project;
 use App\Models\ProjectModel;
 use Illuminate\Bus\Queueable;
@@ -45,14 +46,16 @@ class CreateModelsJob implements ShouldQueue
                 '#--FILLABLE--#',
                 '#--HASH_FUNCTIONS--#',
                 '#--SELECT-CONSTANTS--#',
-                '#--TABLE-NAME--#'
+                '#--TABLE-NAME--#',
+                '#--RELATIONSHIPS--#'
             ], [
                 $this->generatePasswordHashImport($projectModel),
                 $projectModel->name,
                 $this->generateFillable($projectModel),
                 $this->generateHashFunctions($projectModel),
                 $this->generateSelectConstants($projectModel),
-                $projectModel->database_name
+                $projectModel->database_name,
+                $this->generateRelationships($projectModel)
             ], $stub);
 
             file_put_contents($this->project->folder. '/app/Models/' . $projectModel->name . '.php', $replacement);
@@ -65,10 +68,17 @@ class CreateModelsJob implements ShouldQueue
     {
         $str = '';
         foreach($projectModel->fields as $field) {
+            if($field->type == FieldType::BELONGS_TO) {
+                $name = Str::endsWith($field->database_name, '_id') ? $field->database_name : $field->database_name . '_id';
+                $str .= "'$name',\n\t\t";
+                continue;
+
+            }
             $str .= "'$field->database_name',\n\t\t";
         }
         return $str;
     }
+
 
     private function generatePasswordHashImport(ProjectModel $projectModel): string
     {
@@ -78,6 +88,37 @@ class CreateModelsJob implements ShouldQueue
             }
         }
         return '';
+    }
+
+    private function generateRelationships(ProjectModel $projectModel): string {
+        $str = '';
+
+
+        foreach ($projectModel->fields as $field) {
+
+            if($field->type == FieldType::BELONGS_TO ) {
+                $relation = ProjectModel::find($this->getValidation($field, 'crud'));
+                $name = Str::endsWith($field->database_name, '_id') ? $field->database_name : $field->database_name . '_id';
+
+                //if($relation == null) continue;
+
+                $str .= 'public function ' . Str::camel($relation->label) . '() {
+        return $this->belongsTo(\'App\\Models\\' .$relation->name . '\', \''  . $name .'\');
+    }'  . "\n\n\t" ;
+            }
+        }
+
+        return $str;
+    }
+
+    protected function getValidation(ModelField $modelField, $validationName, $default = null) {
+        foreach ($modelField->validations as $validation) {
+            if($validation->name == $validationName) {
+                return $validation->value;
+            }
+        }
+
+        return $default;
     }
 
     private function generateHashFunctions(ProjectModel $projectModel): string

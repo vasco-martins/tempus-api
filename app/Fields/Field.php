@@ -36,7 +36,7 @@ abstract class Field
 
     protected function getValidation($validationName, $default = null) {
         foreach ($this->modelField->validations as $validation) {
-            if($validation->name == $validation) {
+            if($validation->name == $validationName) {
                 return $validation->value;
             }
         }

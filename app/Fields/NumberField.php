@@ -36,7 +36,7 @@ class NumberField extends Field
     public function getTable(): string
     {
         $lowerCaseModelName = $this->getLowerCaseModelNameSingular();
-        return "{{ $$lowerCaseModelName->" . $this->modelField->database_name . " ?? 'Sem dados' }}";
+        return "{{ $" . $lowerCaseModelName . "Item->" . $this->modelField->database_name . " ?? 'Sem dados' }}";
     }
 
     public function getMigration(): string

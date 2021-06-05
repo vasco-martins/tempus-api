@@ -34,7 +34,7 @@ class EmailField extends Field
     public function getTable(): string
     {
         $lowerCaseModelName = $this->getLowerCaseModelNameSingular();
-        return "{{ $$lowerCaseModelName->" . $this->modelField->database_name . " ?? '' }}";
+        return "{{ $" . $lowerCaseModelName . "Item->" . $this->modelField->database_name . " ?? '' }}";
     }
 
     public function getMigration(): string

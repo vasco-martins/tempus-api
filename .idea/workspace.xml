@@ -1,22 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b753790-f878-4562-9790-bc258a1ab44a" name="Default Changelist" comment="Update .gitignore">
+    <list default="true" id="8b753790-f878-4562-9790-bc258a1ab44a" name="Default Changelist" comment="Add edit project models">
+      <change afterPath="$PROJECT_DIR$/app/Fields/BelongsToField.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stubs/coreui/database/add_migration.stub" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Fields/EmailField.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Fields/EmailField.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Fields/Field.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Fields/Field.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Fields/FieldsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Fields/FieldsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Fields/NumberField.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Fields/NumberField.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Fields/SelectField.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Fields/SelectField.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Fields/StringField.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Fields/StringField.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Fields/TextareaField.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Fields/TextareaField.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Helpers/FieldType.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers/FieldType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Builder/ShowFieldsListController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Builder/ShowFieldsListController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ParentMenuController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ParentMenuController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectModelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectModelController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/ProjectModel/CreateProjectModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/ProjectModel/CreateProjectModel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Jobs/CreateLivewireComponentLogicJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/CreateLivewireComponentLogicJob.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Jobs/CreateLivewireComponentViewJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/CreateLivewireComponentViewJob.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Jobs/CreateProjectJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/CreateProjectJob.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Jobs/DeployProjectJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/DeployProjectJob.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Jobs/CreateMigrationsJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/CreateMigrationsJob.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Jobs/CreateModelsJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/CreateModelsJob.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stubs/coreui/app/livewire.stub" beforeDir="false" afterPath="$PROJECT_DIR$/stubs/coreui/app/livewire.stub" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/coreui/app/Providers/RouteServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/themes/coreui/app/Providers/RouteServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/coreui/resources/views/components/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/themes/coreui/resources/views/components/header.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/coreui/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/themes/coreui/resources/views/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/coreui/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/themes/coreui/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -219,6 +225,7 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/Fields" />
+      <recent name="$PROJECT_DIR$/stubs/coreui/database" />
       <recent name="$PROJECT_DIR$/stubs/coreui" />
       <recent name="$PROJECT_DIR$/themes" />
       <recent name="$PROJECT_DIR$/themes/inspinia" />
@@ -319,7 +326,9 @@
       <workItem from="1622627172412" duration="3987000" />
       <workItem from="1622648167328" duration="13027000" />
       <workItem from="1622706247750" duration="13402000" />
-      <workItem from="1622737229898" duration="91000" />
+      <workItem from="1622737229898" duration="927000" />
+      <workItem from="1622741419037" duration="14382000" />
+      <workItem from="1622878804229" duration="1479000" />
     </task>
     <task id="LOCAL-00001" summary="Add some things">
       <created>1619681575637</created>
@@ -419,7 +428,14 @@
       <option name="project" value="LOCAL" />
       <updated>1622723423480</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Add edit project models">
+      <created>1622737608141</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1622737608141</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -449,6 +465,7 @@
     <MESSAGE value="Add deploy to server" />
     <MESSAGE value="Add menu reorder" />
     <MESSAGE value="Update .gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update .gitignore" />
+    <MESSAGE value="Add edit project models" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add edit project models" />
   </component>
 </project>

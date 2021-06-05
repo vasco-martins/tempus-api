@@ -90,6 +90,12 @@ class CreateLivewireComponentLogicJob implements ShouldQueue
         $str = '';
 
         foreach($projectModel->fields as $field) {
+            if($field->type == FieldType::BELONGS_TO) {
+                $name = Str::endsWith($field->database_name, '_id') ? $field->database_name : $field->database_name . '_id';
+                $str .= "\n\t public $" . $name . ';';
+                continue;
+
+            }
             $str .= "\n\t public $" . $field->database_name . ';';
         }
 
@@ -99,6 +105,12 @@ class CreateLivewireComponentLogicJob implements ShouldQueue
     private function buildRules(ProjectModel $projectModel): string {
         $str = '';
         foreach($projectModel->fields as $field) {
+            if($field->type == FieldType::BELONGS_TO) {
+                $name = Str::endsWith($field->database_name, '_id') ? $field->database_name : $field->database_name . '_id';
+                $str .= "\n\t\t\t'$name' => '" . $this->buildRulesArray($field) . "',";
+                continue;
+
+            }
             $str .= "\n\t\t\t'$field->database_name' => '" . $this->buildRulesArray($field) . "',";
         }
 
@@ -116,6 +128,10 @@ class CreateLivewireComponentLogicJob implements ShouldQueue
 
         if($field->type == FieldType::TEXT || $field->type == FieldType::STRING || $field->type == FieldType::TEXTAREA) {
             $str .= 'string|';
+        }
+
+        if($field->type == FieldType::BELONGS_TO) {
+            $str .= 'integer|';
         }
 
         foreach($field->validations as $validation) {
@@ -153,6 +169,12 @@ class CreateLivewireComponentLogicJob implements ShouldQueue
         $str = '';
 
         foreach ($projectModel->fields as $field) {
+            if($field->type == FieldType::BELONGS_TO) {
+                $name = Str::endsWith($field->database_name, '_id') ? $field->database_name : $field->database_name . '_id';
+                $str .= "\n\t\t\t" .'$this' . "->$name = '';";
+                continue;
+
+            }
             if($field->type == FieldType::PASSWORD) {
                 $str .= "\n\t\t\t" .'$this' . "->$field->database_name = '';";
                 continue;
@@ -167,6 +189,7 @@ class CreateLivewireComponentLogicJob implements ShouldQueue
                      $str .= "''";
                     break;
                 case FieldType::NUMBER:
+                case FieldType::BELONGS_TO:
                     $str .= "0";
                     break;
                 default:
@@ -177,7 +200,7 @@ class CreateLivewireComponentLogicJob implements ShouldQueue
 
         $hasSelect = false;
         foreach ($projectModel->fields as $field) {
-            if($field->type == FieldType::SELECT) {
+            if($field->type == FieldType::SELECT || $field->type == FieldType::BELONGS_TO) {
 
                 $value = '$this->emit(\'changeInput\', [\'id\' => \'' . $field->database_name .'\', \'value\' => $' . Str::lower($projectModel->name) .'->' . $field->database_name .']);' . "\n\t\t\t";
 
@@ -197,10 +220,10 @@ class CreateLivewireComponentLogicJob implements ShouldQueue
 
     private function buildSearchableFields(ProjectModel $projectModel): string
     {
-        $str = '';
+        $str = "'id',";
         foreach ($projectModel->fields as $field) {
             $fieldController = new FieldsController($field);
-             if($fieldController->getField()->isSearchable && $field->is_searchable) {
+             if($fieldController->getField()->isSearchable) {
                 $str .= "'$field->database_name',";
              }
         }

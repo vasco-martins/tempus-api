@@ -181,6 +181,25 @@ class ShowFieldsListController extends Controller
                     ],
                 ]
             ],
+            [
+                "type" => "belongsTo",
+                "label" => "Relação BelongsTo",
+                "validations" => [
+                    [
+                        "name" => "crud",
+                        "label" => "CRUD",
+                        "type" => "crudSelect",
+
+                        "required" => true
+                    ],
+                    [
+                        "name" => "field",
+                        "label" => "Campo a apresentar",
+                        "type" => "fieldSelect",
+                        "required" => true,
+                    ],
+                ]
+            ],
         ]);
     }
 }

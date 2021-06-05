@@ -20,6 +20,7 @@ class FieldsController
         FieldType::PASSWORD => PasswordField::class,
         FieldType::EMAIL => EmailField::class,
         FieldType::SELECT => SelectField::class,
+        FieldType::BELONGS_TO => BelongsToField::class,
     ];
 
     public array $searchable = [

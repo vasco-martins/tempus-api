@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\FieldType;
 use App\Http\Requests\ProjectModel\CreateProjectModel;
 use App\Jobs\CreateControllersJob;
 use App\Jobs\CreateEnvExampleJob;
@@ -14,6 +15,7 @@ use App\Jobs\CreateModelsJob;
 use App\Jobs\CreateProjectJob;
 use App\Jobs\CreateRoutesJob;
 use App\Jobs\DeleteProjectJob;
+use App\Models\ModelField;
 use App\Models\Project;
 use App\Models\ProjectModel;
 use Illuminate\Http\Request;
@@ -176,6 +178,10 @@ class ProjectModelController extends Controller
                 $index++;
             }
         }
+
+        ModelField::where('type', FieldType::BELONGS_TO)->with(['validations' => function($query) use ($projectModel) {
+            $query->where('crud', $projectModel->id);
+        }])->delete();
 
         $projectModel->delete();
 

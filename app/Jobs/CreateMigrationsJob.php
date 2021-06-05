@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Fields\FieldsController;
 use App\Helpers\FieldType;
+use App\Models\ModelField;
 use App\Models\Project;
 use App\Models\ProjectModel;
 use Illuminate\Bus\Queueable;
@@ -39,6 +40,8 @@ class CreateMigrationsJob implements ShouldQueue
     public function handle()
     {
         $stub = file_get_contents(base_path('stubs/coreui/database/migration.stub'));
+        $editStub = file_get_contents(base_path('stubs/coreui/database/add_migration.stub'));
+
 
         foreach ($this->project->projectModels as $projectModel) {
 
@@ -57,12 +60,48 @@ class CreateMigrationsJob implements ShouldQueue
                 $replacement);
         }
 
+        foreach($this->project->projectModels as $projectModel) {
+            $fields = $projectModel->fields()->where('type', FieldType::BELONGS_TO)->get();
+
+            if($fields->isEmpty()) {
+                continue;
+            }
+
+            $replacement = str_replace([
+                '#--MIGRATION-CLASS--#',
+                '#--TABLE-NAME--#',
+                '#--MIGRATIONS--#'
+            ], [
+                'AddRelationsTo' . Str::ucfirst(Str::plural(Str::camel($projectModel->name))) . 'Table',
+                $projectModel->database_name,
+                $this->generateRelations($fields)
+            ], $editStub);
+
+            file_put_contents(
+                $this->project->folder . '/database/migrations/' . now()->addSeconds(50)->format('Y_m_d_His') . '_add_relations_to_' . $projectModel->database_name . '_table.php',
+                $replacement);
+
+        }
+
+    }
+
+    private function generateRelations( $fields): string
+    {
+        $str = '';
+
+        foreach($fields as  $field) {
+            $fieldController = new FieldsController($field);
+            $str .=  $fieldController->getField()->getMigration() . "\n\t\t\t";
+        }
+
+        return $str;
     }
 
     private function generateMigrations(ProjectModel $projectModel): string {
         $str = '';
 
         foreach ($projectModel->fields as $field) {
+            if($field->type == FieldType::BELONGS_TO) continue;
             $fieldController = new FieldsController($field);
             $str .=  $fieldController->getField()->getMigration() . "\n\t\t\t";
         }

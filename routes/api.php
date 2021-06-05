@@ -4,6 +4,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Builder\CheckIfModelNameExistsController;
 use App\Http\Controllers\Builder\ShowFieldsListController;
 use App\Http\Controllers\Builder\ShowParentMenusController;
+use App\Http\Controllers\Builder\ShowProjectModelFieldList;
+use App\Http\Controllers\Builder\ShowProjectModelList;
 use App\Http\Controllers\Builder\ShowProjectModelNamesController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ParentMenuController;
@@ -38,6 +40,8 @@ Route::get('projects/{hash}/download', [ProjectController::class, 'download'])->
 Route::get('builder/fields', ShowFieldsListController::class)->name('builder.fields');
 Route::post('builder/projectModelNames', ShowProjectModelNamesController::class)->middleware('auth:api')->name('builder.checkModel');
 Route::post('builder/parentMenuNames', ShowParentMenusController::class)->middleware('auth:api')->name('builder.parentMenuNames');
+Route::get('builder/{project}/projectModelList', ShowProjectModelList::class)->middleware('auth:api')->name('builder.projectModelList');
+Route::get('builder/{project}/projectModelFieldList', ShowProjectModelFieldList::class)->middleware('auth:api')->name('builder.projectModelFieldList');
 
 
 Route::middleware('auth:api')->group(function () {

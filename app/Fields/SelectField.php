@@ -50,7 +50,7 @@ class SelectField extends Field
     public function getTable(): string
     {
         $lowerCaseModelName = $this->getLowerCaseModelNameSingular();
-        return "{{ \App\Models\\" . $this->modelField->model->name . "::" . Str::upper($this->modelField->database_name) . '_SELECT[$' . $lowerCaseModelName . '->' . $this->modelField->database_name . "] ?? '' }}";
+        return "{{ \App\Models\\" . $this->modelField->model->name . "::" . Str::upper($this->modelField->database_name) . '_SELECT[$' . $lowerCaseModelName . 'Item->' . $this->modelField->database_name . "] ?? '' }}";
     }
 
     public function getMigration(): string

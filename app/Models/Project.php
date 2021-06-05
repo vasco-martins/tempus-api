@@ -2,6 +2,17 @@
 
 namespace App\Models;
 
+use App\Jobs\CreateControllersJob;
+use App\Jobs\CreateEnvExampleJob;
+use App\Jobs\CreateIndexViewJob;
+use App\Jobs\CreateLivewireComponentLogicJob;
+use App\Jobs\CreateLivewireComponentViewJob;
+use App\Jobs\CreateMenuJob;
+use App\Jobs\CreateMigrationsJob;
+use App\Jobs\CreateModelsJob;
+use App\Jobs\CreateProjectJob;
+use App\Jobs\CreateRoutesJob;
+use App\Jobs\DeleteProjectJob;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
@@ -34,6 +45,21 @@ class Project extends Model
         });
 
 
+    }
+
+    public static function executeProjectJob(Project $project) {
+        $project->update(['deploy_status' => 0]);
+        DeleteProjectJob::dispatch($project);
+        CreateProjectJob::dispatch($project);
+        CreateEnvExampleJob::dispatch($project);
+        CreateRoutesJob::dispatch($project);
+        CreateControllersJob::dispatch($project);
+        CreateModelsJob::dispatch($project);
+        CreateMenuJob::dispatch($project);
+        CreateLivewireComponentLogicJob::dispatch($project);
+        CreateIndexViewJob::dispatch($project);
+        CreateLivewireComponentViewJob::dispatch($project);
+        CreateMigrationsJob::dispatch($project);
     }
 
     public function user()

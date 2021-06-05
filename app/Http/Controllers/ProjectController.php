@@ -64,24 +64,36 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param $id
-     * @return \Illuminate\Http\Response
+     * @param \App\Http\Requests\Projects\CreateProjectRequest $request
+     * @param \App\Models\Project $project
+     * @return bool
      */
-    public function update(Request $request, $id)
+    public function update(CreateProjectRequest $request, Project $project)
     {
-        //
+        abort_if($project->user->id != auth()->user()->id, 503);
+
+        $data = $request->validated();
+
+        $project->update($data);
+
+        Project::executeProjectJob($project);
+
+        return true;
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param $id
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\Project $project
+     * @return bool
      */
-    public function destroy($id)
+    public function destroy(Project $project)
     {
-        //
+        abort_if($project->user->id != auth()->user()->id, 503);
+
+        $project->delete();
+
+        return true;
     }
 
     /**

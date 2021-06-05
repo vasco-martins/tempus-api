@@ -37,6 +37,7 @@ class AuthController extends Controller
         $user = User::create($data);
         $token = $user->createToken('API Grant')->accessToken;
 
+
         return response()->json(['token' => $token]);
     }
 

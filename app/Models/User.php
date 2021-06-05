@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Jobs\SendWelcomeEmailJob;
+use App\Notifications\WelcomeNotification;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -32,6 +34,13 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public static function boot() {
+        parent::boot();
+
+        static::created(function(User $user) {
+            SendWelcomeEmailJob::dispatch($user);
+        });
+    }
 
     public function projects()
     {

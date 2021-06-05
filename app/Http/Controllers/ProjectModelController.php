@@ -32,20 +32,7 @@ class ProjectModelController extends Controller
         //
     }
 
-    private function executeProjectJob(Project $project) {
-        $project->update(['deploy_status' => 0]);
-        DeleteProjectJob::dispatch($project);
-        CreateProjectJob::dispatch($project);
-        CreateEnvExampleJob::dispatch($project);
-        CreateRoutesJob::dispatch($project);
-        CreateControllersJob::dispatch($project);
-        CreateModelsJob::dispatch($project);
-        CreateMenuJob::dispatch($project);
-        CreateLivewireComponentLogicJob::dispatch($project);
-        CreateIndexViewJob::dispatch($project);
-        CreateLivewireComponentViewJob::dispatch($project);
-        CreateMigrationsJob::dispatch($project);
-    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -89,7 +76,7 @@ class ProjectModelController extends Controller
             $field->validations()->createMany($fieldData['validations']);
         }
 
-        $this->executeProjectJob($project);
+        Project::executeProjectJob($project);
 
         return true;
     }
@@ -153,7 +140,7 @@ class ProjectModelController extends Controller
             $field->validations()->createMany($fieldData['validations']);
         }
 
-        $this->executeProjectJob($project);
+        Project::executeProjectJob($project);
 
         return true;
     }
@@ -185,7 +172,7 @@ class ProjectModelController extends Controller
 
         $projectModel->delete();
 
-        $this->executeProjectJob($project);
+        Project::executeProjectJob($project);
         return true;
     }
 }

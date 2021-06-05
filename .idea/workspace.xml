@@ -4,25 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b753790-f878-4562-9790-bc258a1ab44a" name="Default Changelist" comment="Add edit project models">
-      <change afterPath="$PROJECT_DIR$/app/Fields/BelongsToField.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stubs/coreui/database/add_migration.stub" afterDir="false" />
+    <list default="true" id="8b753790-f878-4562-9790-bc258a1ab44a" name="Default Changelist" comment="Add welcome email and project settings">
+      <change afterPath="$PROJECT_DIR$/app/Console/Commands/ResetFolders.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Jobs/SendWelcomeEmailJob.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Mail/WelcomeMail.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Notifications/WelcomeNotification.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/emails/welcome.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Fields/EmailField.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Fields/EmailField.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Fields/Field.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Fields/Field.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Fields/FieldsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Fields/FieldsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Fields/NumberField.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Fields/NumberField.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Fields/SelectField.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Fields/SelectField.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Fields/StringField.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Fields/StringField.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Fields/TextareaField.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Fields/TextareaField.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Helpers/FieldType.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers/FieldType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Builder/ShowFieldsListController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Builder/ShowFieldsListController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ParentMenuController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ParentMenuController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectModelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectModelController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Jobs/CreateLivewireComponentLogicJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/CreateLivewireComponentLogicJob.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Jobs/CreateMigrationsJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/CreateMigrationsJob.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Jobs/CreateModelsJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/CreateModelsJob.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Project.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Project.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -216,7 +209,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Fields" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/emails" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="settings.editor.selected.configurable" value="settings.saveactions" />
@@ -224,11 +217,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views/emails" />
       <recent name="$PROJECT_DIR$/app/Fields" />
       <recent name="$PROJECT_DIR$/stubs/coreui/database" />
       <recent name="$PROJECT_DIR$/stubs/coreui" />
       <recent name="$PROJECT_DIR$/themes" />
-      <recent name="$PROJECT_DIR$/themes/inspinia" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/stubs" />
@@ -328,7 +321,7 @@
       <workItem from="1622706247750" duration="13402000" />
       <workItem from="1622737229898" duration="927000" />
       <workItem from="1622741419037" duration="14382000" />
-      <workItem from="1622878804229" duration="1479000" />
+      <workItem from="1622878804229" duration="5535000" />
     </task>
     <task id="LOCAL-00001" summary="Add some things">
       <created>1619681575637</created>
@@ -435,7 +428,14 @@
       <option name="project" value="LOCAL" />
       <updated>1622737608141</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Add belongsTo relationship field">
+      <created>1622880511470</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1622880511470</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -466,6 +466,8 @@
     <MESSAGE value="Add menu reorder" />
     <MESSAGE value="Update .gitignore" />
     <MESSAGE value="Add edit project models" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add edit project models" />
+    <MESSAGE value="Add belongsTo relationship field" />
+    <MESSAGE value="Add welcome email and project settings" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add welcome email and project settings" />
   </component>
 </project>

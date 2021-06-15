@@ -54,4 +54,5 @@ class AuthController extends Controller
     {
         return new \App\Http\Resources\User(auth()->user());
     }
+
 }

@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use App\Http\Traits\WithImageUpload;
 use Illuminate\Database\Eloquent\Model;
 #--PASSWORD-HASH-IMPORT--#
 
 class #--MODEL-NAME--# extends Model
 {
+    use WithImageUpload;
 
     protected $table = "#--TABLE-NAME--#";
 
@@ -16,7 +18,12 @@ class #--MODEL-NAME--# extends Model
         #--FILLABLE--#
     ];
 
+    protected $dates = [
+        'created_at'
+    ];
+
     #--RELATIONSHIPS--#
     #--HASH_FUNCTIONS--#
+
 
 }

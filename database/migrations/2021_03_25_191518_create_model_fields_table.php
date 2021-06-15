@@ -24,6 +24,8 @@ class CreateModelFieldsTable extends Migration
             $table->boolean('in_view')->default(true);
             $table->boolean('in_edit')->default(true);
             $table->boolean('in_create')->default(true);
+            $table->boolean('can_edit')->default(true);
+
             $table->timestamps();
         });
     }

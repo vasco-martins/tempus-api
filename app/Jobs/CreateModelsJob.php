@@ -38,6 +38,7 @@ class CreateModelsJob implements ShouldQueue
     public function handle()
     {
         $stub = file_get_contents(base_path('stubs/coreui/app/model.stub'));
+        //$userStub = file_get_contents(base_path('stubs/coreui/app/userModel.stub'));
 
         foreach ($this->project->projectModels as $projectModel) {
             $replacement = str_replace([
@@ -56,7 +57,7 @@ class CreateModelsJob implements ShouldQueue
                 $this->generateSelectConstants($projectModel),
                 $projectModel->database_name,
                 $this->generateRelationships($projectModel)
-            ], $stub);
+            ],   $stub);
 
             file_put_contents($this->project->folder. '/app/Models/' . $projectModel->name . '.php', $replacement);
 

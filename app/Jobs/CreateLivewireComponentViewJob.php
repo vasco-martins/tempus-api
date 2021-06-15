@@ -48,6 +48,7 @@ class CreateLivewireComponentViewJob implements ShouldQueue
                 '#--TABLE-HEAD--#',
                 '#--LOWERCASE-MODEL-NAME-PLURAL--#',
                 '#--LOWERCASE-MODEL-NAME--#',
+                '#--VARIABLE-NAME--#',
                 '#--TABLE-ROW--#',
                 '#--FORM--#',
                 '#--SCRIPTS--#'
@@ -57,6 +58,7 @@ class CreateLivewireComponentViewJob implements ShouldQueue
                 $this->buildTableHead($projectModel),
                 Str::lower(Str::plural($projectModel->name)),
                 Str::lower(Str::singular($projectModel->name)) . 'Item',
+                Str::lower(Str::singular($projectModel->name)),
                 $this->buildTableRow($projectModel),
                 $this->buildForm($projectModel),
                 $this->buildScripts($projectModel)

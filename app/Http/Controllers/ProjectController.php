@@ -2,20 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\FieldType;
 use App\Http\Requests\Projects\CreateProjectRequest;
 use App\Http\Resources\ProjectCollection;
-use App\Jobs\CreateEnvExampleJob;
-use App\Jobs\CreateMenuJob;
-use App\Jobs\CreateProjectJob;
-use App\Jobs\DeleteProjectJob;
 use App\Jobs\DeployProjectJob;
+use App\Models\ModelField;
 use App\Models\Project;
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
+use App\Models\ProjectModel;
 use PhpZip\ZipFile;
-use RecursiveDirectoryIterator;
-use RecursiveIteratorIterator;
-use ZipArchive;
 
 class ProjectController extends Controller
 {
@@ -41,10 +35,9 @@ class ProjectController extends Controller
 
         $project = auth()->user()->projects()->create($data);
 
-        DeleteProjectJob::dispatch($project);
-        CreateProjectJob::dispatch($project);
-        CreateEnvExampleJob::dispatch($project);
-        CreateMenuJob::dispatch($project);
+       // $this->createUsersTable($project);
+
+        Project::executeProjectJob($project);
 
         return new \App\Http\Resources\Project($project);
     }
@@ -138,6 +131,53 @@ class ProjectController extends Controller
             'message' => Project::DEPLOY_STATUS[$project->deploy_status],
             'url' => $url,
             'percentage' => $percentage,
+        ]);
+    }
+
+    private function createUsersTable(Project $project) {
+        $projectModel = ProjectModel::create([
+            'name' => 'User',
+            'label' => 'Utilzadores',
+            'soft_delete' => 0,
+            'project_id' => $project->id,
+            'order' => 0
+
+        ]);
+
+        ModelField::create([
+            'can_edit' => false,
+            'label' => 'Nome',
+            'type' => FieldType::STRING,
+            'database_name' => 'name',
+            'in_view' => true,
+            'project_model_id' => $projectModel->id,
+            'in_edit' => true,
+            'in_create' => true,
+            'is_searchable' => true
+        ]);
+
+        ModelField::create([
+            'can_edit' => false,
+            'label' => 'Email',
+            'type' => FieldType::EMAIL,
+            'database_name' => 'email',
+            'in_view' => true,
+            'project_model_id' => $projectModel->id,
+            'in_edit' => true,
+            'in_create' => true,
+            'is_searchable' => true
+        ]);
+
+        ModelField::create([
+            'can_edit' => false,
+            'label' => 'Password',
+            'type' => FieldType::PASSWORD,
+            'database_name' => 'password',
+            'in_view' => true,
+            'project_model_id' => $projectModel->id,
+            'in_edit' => true,
+            'in_create' => true,
+            'is_searchable' => true
         ]);
     }
 

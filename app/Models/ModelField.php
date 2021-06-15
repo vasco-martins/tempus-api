@@ -14,9 +14,11 @@ class ModelField extends Model
         'type',
         'database_name',
         'in_view',
+        'project_model_id',
         'in_edit',
         'in_create',
-        'is_searchable'
+        'is_searchable',
+        'can_edit',
     ];
 
     public function model()

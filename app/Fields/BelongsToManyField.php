@@ -9,7 +9,7 @@ use App\Models\ModelField;
 use App\Models\ProjectModel;
 use Illuminate\Support\Str;
 
-class BelongsToField extends Field
+class BelongsToManyField extends Field
 {
 
     public bool $isSearchable = false;
@@ -29,6 +29,8 @@ class BelongsToField extends Field
                             <select
                                 class=""
                                 id="' . $name . '"
+                                name="' . $name . '[]"
+                                multiple
                             >
                             <option selected>Selecione uma opção</option>
                             @foreach(App\Models\\' . $valuesField->name . '::all() as $child)
@@ -60,7 +62,7 @@ class BelongsToField extends Field
 
         $field = ModelField::find($this->getValidation('field'));
 
-        return "{{ $" . $lowerCaseModelName . "Item->" . Str::camel($relation->label) .  "->" . $field->database_name . " ?? '' }}";
+        return "{{ $" . $lowerCaseModelName . "Item->" . Str::camel(Str::plural($relation->label)) .  "->pluck('" . $field->database_name . "')->implode(', ') ?? '' }}";
     }
 
     public function getMigration(): string
@@ -70,11 +72,15 @@ class BelongsToField extends Field
         $relation = ProjectModel::find($this->getValidation('crud'));
 
         $name = Str::endsWith($this->modelField->database_name, '_id') ? $this->modelField->database_name : $this->modelField->database_name . '_id';
+    //    $ownName = Str::endsWith($this->modelField->database_name, '_id') ? $this->modelField->database_name : $this->modelField->database_name . '_id';
 
         if($relation == null) {
             return '';
         }
 
-        return '$table->foreignId(\'' . $name . '\')' . $isRequired . '->constrained(\'' . $relation->database_name . '\')->onDelete(\'cascade\');';
+        $str = '$table->foreignId(\'' . $name . '\')' . $isRequired . '->constrained(\'' . $relation->database_name . '\')->onDelete(\'cascade\');';
+        $str .= '$table->foreignId(\'' . $name . '\')' . $isRequired . '->constrained(\'' . $relation->database_name . '\')->onDelete(\'cascade\');';
+
+        return $str;
     }
 }

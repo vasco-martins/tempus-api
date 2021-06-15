@@ -21,6 +21,7 @@ class FieldsController
         FieldType::EMAIL => EmailField::class,
         FieldType::SELECT => SelectField::class,
         FieldType::BELONGS_TO => BelongsToField::class,
+        FieldType::DATE => DateField::class,
     ];
 
     public array $searchable = [
@@ -30,6 +31,7 @@ class FieldsController
         FieldType::NUMBER,
         FieldType::EMAIL,
         FieldType::SELECT,
+        FieldType::DATE
     ];
 
     /**

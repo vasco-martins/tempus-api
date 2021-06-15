@@ -134,6 +134,10 @@ class CreateLivewireComponentLogicJob implements ShouldQueue
             $str .= 'integer|';
         }
 
+        if($field->type == FieldType::DATE) {
+            $str .= 'date|';
+        }
+
         foreach($field->validations as $validation) {
 
             switch ($validation->name) {
@@ -175,17 +179,25 @@ class CreateLivewireComponentLogicJob implements ShouldQueue
                 continue;
 
             }
+            if($field->type == FieldType::BELONGS_TO_MANY) {
+                $name = Str::endsWith($field->database_name, '_id') ? $field->database_name : $field->database_name . '_id';
+                $str .= "\n\t\t\t" .'$this' . "->$name = [];";
+                continue;
+
+            }
             if($field->type == FieldType::PASSWORD) {
                 $str .= "\n\t\t\t" .'$this' . "->$field->database_name = '';";
                 continue;
             }
-            $str .= "\n\t\t\t" .'$this' . "->$field->database_name = $" . Str::lower($projectModel->name) . "->" . $field->database_name . ' ??';
+
+            $str .= "\n\t\t\t" .'$this' . "->$field->database_name = $" .  Str::lower(Str::singular($projectModel->name)) . "->" . $field->database_name . ' ??';
             switch ($field->type) {
                 case FieldType::STRING:
                 case FieldType::TEXTAREA:
                 case FieldType::EMAIL:
                 case FieldType::TEXT:
                 case FieldType::SELECT:
+                case FieldType::DATE:
                      $str .= "''";
                     break;
                 case FieldType::NUMBER:
@@ -199,21 +211,25 @@ class CreateLivewireComponentLogicJob implements ShouldQueue
         }
 
         $hasSelect = false;
+        $str .=  "\n\t\t" . 'if($' . Str::lower(Str::singular($projectModel->name)) . ') {' . "\n\t\t\t";
+
         foreach ($projectModel->fields as $field) {
             if($field->type == FieldType::SELECT || $field->type == FieldType::BELONGS_TO) {
+                $name = Str::endsWith($field->database_name, '_id') ? $field->database_name : $field->database_name . '_id';
 
-                $value = '$this->emit(\'changeInput\', [\'id\' => \'' . $field->database_name .'\', \'value\' => $' . Str::lower($projectModel->name) .'->' . $field->database_name .']);' . "\n\t\t\t";
+                $value = '$this->emit(\'changeInput\', [\'id\' => \'' . $name .'\', \'value\' => $' . Str::lower($projectModel->name) .'->' . $name .']);' . "\n\t\t\t";
 
                 if($hasSelect) {
                    $str .= $value;
                 } else {
-                    $str .=  "\n\t\t" . 'if($' . Str::lower($projectModel->name) . ') {' . "\n\t\t\t";
                     $str .= $value;
-                    $str .= '}';
                     $hasSelect = true;
                 }
             }
+
         }
+        $str .= '}';
+
 
         return $str;
     }

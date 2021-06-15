@@ -14,9 +14,10 @@ abstract class FieldType
     const PASSWORD = 'password';
     const SELECT = 'select';
     const BELONGS_TO = 'belongsTo';
-   // const BOOLEAN = 'boolean';
-   // const DATE = 'date';
-   // const IMAGE = 'image';
-    //const MONEY = 'money';
+    const BELONGS_TO_MANY = 'belongsToMany';
+    const DATE = 'date';
+     // const BOOLEAN = 'boolean';
+     // const IMAGE = 'image';
+     //const MONEY = 'money';
 
 }

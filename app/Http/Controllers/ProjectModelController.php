@@ -16,8 +16,10 @@ use App\Jobs\CreateProjectJob;
 use App\Jobs\CreateRoutesJob;
 use App\Jobs\DeleteProjectJob;
 use App\Models\ModelField;
+use App\Models\ModelFieldValidation;
 use App\Models\Project;
 use App\Models\ProjectModel;
+use BeyondCode\ErdGenerator\Model;
 use Illuminate\Http\Request;
 
 class ProjectModelController extends Controller
@@ -166,9 +168,11 @@ class ProjectModelController extends Controller
             }
         }
 
-        ModelField::where('type', FieldType::BELONGS_TO)->with(['validations' => function($query) use ($projectModel) {
-            $query->where('crud', $projectModel->id);
-        }])->delete();
+        $validations = ModelFieldValidation::where(['name' => 'crud', 'value' => $projectModel->id])->get();
+
+        foreach($validations as $validation) {
+            $validation->modelField->delete();
+        }
 
         $projectModel->delete();
 

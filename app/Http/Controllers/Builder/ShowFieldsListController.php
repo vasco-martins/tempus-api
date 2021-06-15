@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Builder;
 
+use App\Helpers\FieldType;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -68,6 +69,18 @@ class ShowFieldsListController extends Controller
                         "required" => false
                     ],
                 ]
+            ],
+            [
+                "type" => FieldType::DATE,
+                "label" => "Data",
+                "validations" => [
+                    [
+                        "name" => "required",
+                        "label" => "Campo obrigatório",
+                        "type" => "checkbox",
+                        "required" => false
+                    ],
+                ],
             ],
             [
                 "type" => "text",
@@ -200,6 +213,25 @@ class ShowFieldsListController extends Controller
                     ],
                 ]
             ],
+            [
+                "type" => "belongsToMany",
+                "label" => "Relação BelongsToMany",
+                "validations" => [
+                    [
+                        "name" => "crud",
+                        "label" => "CRUD",
+                        "type" => "crudSelect",
+                        "required" => true
+                    ],
+                    [
+                        "name" => "field",
+                        "label" => "Campo a apresentar",
+                        "type" => "fieldSelect",
+                        "required" => true,
+                    ],
+                ]
+            ],
+
         ]);
     }
 }

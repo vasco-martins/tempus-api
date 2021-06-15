@@ -363,7 +363,7 @@
        <td>
         <table align="center" cellspacing="0" cellpadding="0" border="0">
          <tr>
-          <td width="600" background="https://icasietc.sirv.com/Tempus/5cd00a551ec3967d76f240bad65b85af2eccb103.png" class="5cd00a551ec3967d76f240bad65b85af2eccb103" style="background-repeat:no-repeat !important; background-position: center center !important; background-size: cover !important; border-collapse:separate !important;">
+          <td width="600" background="https://icasietc.sirv.com/Tempus/5cd00a551ec3967d76f240bad65b85af2eccb103.pnghttps://icasietc.sirv.com/Tempus/8c6bc853079ab3a0b930b8c5ac6c83a17af4b2ba.png" class="5cd00a551ec3967d76f240bad65b85af2eccb103" style="background-repeat:no-repeat !important; background-position: center center !important; background-size: cover !important; border-collapse:separate !important;">
            <!--[if gte mso 9]>
                 <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:600px; background-repeat:no-repeat !important; background-position: center center !important; background-size: cover !important;">
                 <v:fill type="tile" src="5cd00a551ec3967d76f240bad65b85af2eccb103.png" color="#ffffff"/>

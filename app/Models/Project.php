@@ -49,7 +49,7 @@ class Project extends Model
 
     public static function executeProjectJob(Project $project) {
         $project->update(['deploy_status' => 0]);
-        DeleteProjectJob::dispatch($project);
+         DeleteProjectJob::dispatch($project);
         CreateProjectJob::dispatch($project);
         CreateEnvExampleJob::dispatch($project);
         CreateRoutesJob::dispatch($project);

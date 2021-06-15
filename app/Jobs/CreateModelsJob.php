@@ -69,12 +69,6 @@ class CreateModelsJob implements ShouldQueue
     {
         $str = '';
         foreach($projectModel->fields as $field) {
-            if($field->type == FieldType::BELONGS_TO) {
-                $name = Str::endsWith($field->database_name, '_id') ? $field->database_name : $field->database_name . '_id';
-                $str .= "'$name',\n\t\t";
-                continue;
-
-            }
             $str .= "'$field->database_name',\n\t\t";
         }
         return $str;
@@ -99,12 +93,8 @@ class CreateModelsJob implements ShouldQueue
 
             if($field->type == FieldType::BELONGS_TO ) {
                 $relation = ProjectModel::find($this->getValidation($field, 'crud'));
-                $name = Str::endsWith($field->database_name, '_id') ? $field->database_name : $field->database_name . '_id';
-
-                //if($relation == null) continue;
-
                 $str .= 'public function ' . Str::camel($relation->label) . '() {
-        return $this->belongsTo(\'App\\Models\\' .$relation->name . '\', \''  . $name .'\');
+        return $this->belongsTo(\'App\\Models\\' .$relation->name . '\', \''  . $field->database_name .'\');
     }'  . "\n\n\t" ;
             }
         }

@@ -5,43 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8b753790-f878-4562-9790-bc258a1ab44a" name="Default Changelist" comment="Add password reset">
-      <change afterPath="$PROJECT_DIR$/app/Fields/BelongsToManyField.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Fields/DateField.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/ForgotPasswordController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/Auth/ForgotPasswordRequest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/Auth/ResetPasswordRequest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/Users/UpdateUserRequest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Jobs/SendForgotPasswordEmailJob.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Mail/ForgotPasswordMail.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/PasswordReset.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/emails/forgot-password.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stubs/coreui/app/userModel.stub" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stubs/coreui/database/usersTable.stub" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/themes/coreui/app/Http/Traits/WithImageUpload.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Fields/BelongsToField.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Fields/BelongsToField.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Fields/FieldsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Fields/FieldsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Helpers/FieldType.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers/FieldType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Builder/ShowFieldsListController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Builder/ShowFieldsListController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectModelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectModelController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Jobs/CreateLivewireComponentLogicJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/CreateLivewireComponentLogicJob.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Jobs/CreateLivewireComponentViewJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/CreateLivewireComponentViewJob.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Jobs/CreateMigrationsJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/CreateMigrationsJob.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Jobs/CreateModelsJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/CreateModelsJob.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/ModelField.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ModelField.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Project.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Project.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_25_191237_create_project_models_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_25_191237_create_project_models_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_25_191518_create_model_fields_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_25_191518_create_model_fields_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/emails/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/emails/welcome.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stubs/coreui/app/model.stub" beforeDir="false" afterPath="$PROJECT_DIR$/stubs/coreui/app/model.stub" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stubs/coreui/views/livewire.stub" beforeDir="false" afterPath="$PROJECT_DIR$/stubs/coreui/views/livewire.stub" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/coreui/resources/views/components/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/themes/coreui/resources/views/components/header.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -359,7 +327,7 @@
       <workItem from="1623567186112" duration="3527000" />
       <workItem from="1623586759257" duration="45000" />
       <workItem from="1623655866407" duration="2933000" />
-      <workItem from="1623744682042" duration="384000" />
+      <workItem from="1623744682042" duration="1079000" />
     </task>
     <task id="LOCAL-00001" summary="Add some things">
       <created>1619681575637</created>
@@ -480,7 +448,14 @@
       <option name="project" value="LOCAL" />
       <updated>1622901216793</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Add password reset">
+      <created>1623745097282</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1623745097282</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

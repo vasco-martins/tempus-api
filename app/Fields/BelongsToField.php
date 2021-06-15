@@ -19,16 +19,15 @@ class BelongsToField extends Field
         $valuesField = ProjectModel::find($this->getValidation('crud'));
         $field = ModelField::find($this->getValidation('field'));
 
-        $name = Str::endsWith($this->modelField->database_name, '_id') ? $this->modelField->database_name : $this->modelField->database_name . '_id';
 
 
 
         return '
                   <div class="form-group" wire:ignore>
-                            <label for="' . $name . '">Example select</label>
+                            <label for="' . $this->modelField->database_name . '">Example select</label>
                             <select
                                 class=""
-                                id="' . $name . '"
+                                id="' . $this->modelField->database_name . '"
                             >
                             <option selected>Selecione uma opção</option>
                             @foreach(App\Models\\' . $valuesField->name . '::all() as $child)
@@ -43,13 +42,12 @@ class BelongsToField extends Field
 
     public function getScripts(): string
     {
-        $name = Str::endsWith($this->modelField->database_name, '_id') ? $this->modelField->database_name : $this->modelField->database_name . '_id';
 
         return '
-         new TomSelect(\'#' . $name . '\', {
+         new TomSelect(\'#' . $this->modelField->database_name . '\', {
              plugins: [\'change_listener\'],
             onChange: (value) => {
-                @this.set(\'' . $name . '\', value);
+                @this.set(\'' . $this->modelField->database_name . '\', value);
             }
         });';    }
 
@@ -69,12 +67,11 @@ class BelongsToField extends Field
 
         $relation = ProjectModel::find($this->getValidation('crud'));
 
-        $name = Str::endsWith($this->modelField->database_name, '_id') ? $this->modelField->database_name : $this->modelField->database_name . '_id';
 
         if($relation == null) {
             return '';
         }
 
-        return '$table->foreignId(\'' . $name . '\')' . $isRequired . '->constrained(\'' . $relation->database_name . '\')->onDelete(\'cascade\');';
+        return '$table->foreignId(\'' . $this->modelField->database_name . '\')' . $isRequired . '->constrained(\'' . $relation->database_name . '\')->onDelete(\'cascade\');';
     }
 }

@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
+use App\Fields\Field;
+use App\Helpers\FieldType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class ModelField extends Model
 {
@@ -20,6 +23,14 @@ class ModelField extends Model
         'is_searchable',
         'can_edit',
     ];
+
+    public function getDatabaseNameAttribute($value) {
+        if($this->type == FieldType::BELONGS_TO) {
+            return Str::endsWith($value, '_id') ? $value : $value . '_id';
+        }
+
+        return $value;
+    }
 
     public function model()
     {

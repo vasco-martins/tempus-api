@@ -90,12 +90,6 @@ class CreateLivewireComponentLogicJob implements ShouldQueue
         $str = '';
 
         foreach($projectModel->fields as $field) {
-            if($field->type == FieldType::BELONGS_TO) {
-                $name = Str::endsWith($field->database_name, '_id') ? $field->database_name : $field->database_name . '_id';
-                $str .= "\n\t public $" . $name . ';';
-                continue;
-
-            }
             $str .= "\n\t public $" . $field->database_name . ';';
         }
 
@@ -105,12 +99,6 @@ class CreateLivewireComponentLogicJob implements ShouldQueue
     private function buildRules(ProjectModel $projectModel): string {
         $str = '';
         foreach($projectModel->fields as $field) {
-            if($field->type == FieldType::BELONGS_TO) {
-                $name = Str::endsWith($field->database_name, '_id') ? $field->database_name : $field->database_name . '_id';
-                $str .= "\n\t\t\t'$name' => '" . $this->buildRulesArray($field) . "',";
-                continue;
-
-            }
             $str .= "\n\t\t\t'$field->database_name' => '" . $this->buildRulesArray($field) . "',";
         }
 
@@ -174,8 +162,7 @@ class CreateLivewireComponentLogicJob implements ShouldQueue
 
         foreach ($projectModel->fields as $field) {
             if($field->type == FieldType::BELONGS_TO) {
-                $name = Str::endsWith($field->database_name, '_id') ? $field->database_name : $field->database_name . '_id';
-                $str .= "\n\t\t\t" .'$this' . "->$name = '';";
+                $str .= "\n\t\t\t" .'$this' . "->$field->database_name = '';";
                 continue;
 
             }
@@ -215,9 +202,8 @@ class CreateLivewireComponentLogicJob implements ShouldQueue
 
         foreach ($projectModel->fields as $field) {
             if($field->type == FieldType::SELECT || $field->type == FieldType::BELONGS_TO) {
-                $name = Str::endsWith($field->database_name, '_id') ? $field->database_name : $field->database_name . '_id';
 
-                $value = '$this->emit(\'changeInput\', [\'id\' => \'' . $name .'\', \'value\' => $' . Str::lower($projectModel->name) .'->' . $name .']);' . "\n\t\t\t";
+                $value = '$this->emit(\'changeInput\', [\'id\' => \'' . $field->database_name .'\', \'value\' => $' . Str::lower($projectModel->name) .'->' . $field->database_name .']);' . "\n\t\t\t";
 
                 if($hasSelect) {
                    $str .= $value;

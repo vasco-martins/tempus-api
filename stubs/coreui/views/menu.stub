@@ -4,6 +4,7 @@
     </div>
     <ul class="c-sidebar-nav">
         #--MENU-FIELDS--#
+        <x-navitem title="Utilizadores" :route="route('users.index')"  activeRoute="users/*" single />
     </ul>
     <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent" data-class="c-sidebar-minimized"></button>
 </div>

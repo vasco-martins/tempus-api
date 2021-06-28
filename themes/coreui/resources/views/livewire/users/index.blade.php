@@ -15,7 +15,7 @@
     <div class="card card-accent-primary">
         <div class="card-header d-flex align-items-center justify-content-between">
             {{ __('Dashboard') }}
-            <button type="button" class="btn btn-primary" wire:click="create">Nova(o) #--LABEL-SINGULAR--#</button>
+            <button type="button" class="btn btn-primary" wire:click="create">Novo Utilizador</button>
 
         </div>
 
@@ -24,27 +24,31 @@
                 <thead>
                 <tr>
                     <th scope="col">#</th>
-                    #--TABLE-HEAD--#
+                    <th>Nome</th>
+					<th>Email</th>
+
                     <th scope="col">Criado a</th>
                     <th scope="col">Ações</th>
                 </tr>
                 </thead>
                 <tbody>
 
-                @forelse($#--LOWERCASE-MODEL-NAME-PLURAL--# as $#--LOWERCASE-MODEL-NAME--#)
+                @forelse($users as $userItem)
                     <tr>
-                        <th scope="row">{{ $#--LOWERCASE-MODEL-NAME--#->id }}</th>
-                        #--TABLE-ROW--#
+                        <th scope="row">{{ $userItem->id }}</th>
+                        <td>{{ $userItem->name ?? '' }}</td>
+						<td>{{ $userItem->email ?? '' }}</td>
 
-                        <td>{{ $#--LOWERCASE-MODEL-NAME--#->created_at->diffForHumans()  }}</td>
+
+                        <td>{{ $userItem->created_at->diffForHumans()  }}</td>
 
                         <td>
                             <div class="btn-group" role="group" aria-label="Basic example">
-                                <button type="button" wire:click="$emit('update', {{ $#--LOWERCASE-MODEL-NAME--# }})" class="btn btn-warning">
+                                <button type="button" wire:click="$emit('update', {{ $userItem }})" class="btn btn-warning">
                                     Editar
                                 </button>
                                 <button type="button" class="btn btn-danger"
-                                        wire:click="$emit('openDestroy', {{ $#--LOWERCASE-MODEL-NAME--# }})">Remover
+                                        wire:click="$emit('openDestroy', {{ $userItem }})">Remover
                                 </button>
                             </div>
                         </td>
@@ -58,7 +62,7 @@
                 </tbody>
             </table>
 
-            {{ $#--LOWERCASE-MODEL-NAME-PLURAL--#->links() }}
+            {{ $users->links() }}
         </div>
     </div>
 
@@ -68,7 +72,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title"
-                        id="exampleModalLabel">{{ isset($#--VARIABLE-NAME--#) ? __('Editar #--LABEL--#') : __('Novo #--LABEL--#') }}</h5>
+                        id="exampleModalLabel">{{ isset($user) ? __('Editar Utilizador') : __('Novo Utilizador') }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -76,13 +80,49 @@
                 <div class="modal-body">
                     <form wire:submit.prevent="store">
 
-                        #--FORM--#
+
+
+
+            <label for="basiurl">Nome</label>
+            <div class="input-group mb-3">
+                    <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                   wire:model="name" name="Nome">
+                     @error('name')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+            </div>
+
+
+            <label for="basiurl">Email</label>
+            <div class="input-group mb-3">
+                    <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                   wire:model="email" name="Email">
+                     @error('email')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+            </div>
+
+
+            <label for="basiurl">Password</label>
+            <div class="input-group mb-3">
+                    <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                   wire:model="password" name="Password">
+                     @error('password')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+            </div>
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                     <button type="submit"
-                            class="btn btn-primary">{{ isset($#--VARIABLE-NAME--#) ? __('Atualizar') : __('Criar') }}</button>
+                            class="btn btn-primary">{{ isset($user) ? __('Atualizar') : __('Criar') }}</button>
                 </div>
                 </form>
 
@@ -95,7 +135,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">{{ __('Remover #--LABEL--#') }}</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{{ __('Remover Utilizador') }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -129,7 +169,5 @@
             $('#destroyModal').modal('hide');
         });
 
-
-        #--SCRIPTS--#
     </script>
 @endpush

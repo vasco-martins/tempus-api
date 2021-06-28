@@ -24,7 +24,7 @@ class BelongsToField extends Field
 
         return '
                   <div class="form-group" wire:ignore>
-                            <label for="' . $this->modelField->database_name . '">Example select</label>
+                            <label for="' . $this->modelField->database_name . '">' . $this->modelField->label . '</label>
                             <select
                                 class=""
                                 id="' . $this->modelField->database_name . '"

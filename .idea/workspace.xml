@@ -4,12 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b753790-f878-4562-9790-bc258a1ab44a" name="Default Changelist" comment="Add password reset">
+    <list default="true" id="8b753790-f878-4562-9790-bc258a1ab44a" name="Default Changelist" comment="Refactor belongsTo">
+      <change afterPath="$PROJECT_DIR$/themes/coreui/app/Http/Controllers/UserController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/coreui/app/Http/Livewire/User/Index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/coreui/resources/views/livewire/users/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/coreui/resources/views/users/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Fields/BelongsToField.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Fields/BelongsToField.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Jobs/CreateLivewireComponentLogicJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/CreateLivewireComponentLogicJob.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Jobs/CreateModelsJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/CreateModelsJob.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ModelField.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ModelField.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Fields/BelongsToManyField.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Fields/BelongsToManyField.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Fields/SelectField.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Fields/SelectField.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectModelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectModelController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Jobs/CreateControllersJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/CreateControllersJob.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Jobs/CreateMenuJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/CreateMenuJob.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/ProjectModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ProjectModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stubs/coreui/routes/web.stub" beforeDir="false" afterPath="$PROJECT_DIR$/stubs/coreui/routes/web.stub" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stubs/coreui/views/livewire.stub" beforeDir="false" afterPath="$PROJECT_DIR$/stubs/coreui/views/livewire.stub" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stubs/coreui/views/menu.stub" beforeDir="false" afterPath="$PROJECT_DIR$/stubs/coreui/views/menu.stub" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/coreui/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/themes/coreui/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/coreui/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/themes/coreui/database/seeders/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/coreui/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/themes/coreui/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -203,7 +216,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Fields" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/themes/coreui/app/Http/Controllers" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="settings.editor.selected.configurable" value="settings.saveactions" />
@@ -211,13 +224,14 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/themes/coreui/app/Http/Controllers" />
+      <recent name="$PROJECT_DIR$/themes/coreui/resources/views/livewire" />
+      <recent name="$PROJECT_DIR$/themes/coreui/resources" />
+      <recent name="$PROJECT_DIR$/themes/coreui/app/Http/Livewire" />
       <recent name="$PROJECT_DIR$/app/Fields" />
-      <recent name="$PROJECT_DIR$/themes/coreui/database/migrations" />
-      <recent name="$PROJECT_DIR$/stubs/coreui/database" />
-      <recent name="$PROJECT_DIR$/resources/views/emails" />
-      <recent name="$PROJECT_DIR$/stubs/coreui" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/themes/coreui/resources/views" />
       <recent name="$PROJECT_DIR$/stubs" />
       <recent name="$PROJECT_DIR$/stubs/coreui/database" />
       <recent name="$PROJECT_DIR$/themes/coreui" />
@@ -327,7 +341,14 @@
       <workItem from="1623567186112" duration="3527000" />
       <workItem from="1623586759257" duration="45000" />
       <workItem from="1623655866407" duration="2933000" />
-      <workItem from="1623744682042" duration="1079000" />
+      <workItem from="1623744682042" duration="2902000" />
+      <workItem from="1623859709175" duration="117000" />
+      <workItem from="1623872480631" duration="22000" />
+      <workItem from="1623873009381" duration="41000" />
+      <workItem from="1624004477122" duration="1565000" />
+      <workItem from="1624392524297" duration="1223000" />
+      <workItem from="1624460191102" duration="52000" />
+      <workItem from="1624872462702" duration="5091000" />
     </task>
     <task id="LOCAL-00001" summary="Add some things">
       <created>1619681575637</created>
@@ -455,7 +476,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623745097282</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Refactor belongsTo">
+      <created>1623746001533</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1623746001534</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -489,6 +517,7 @@
     <MESSAGE value="Add belongsTo relationship field" />
     <MESSAGE value="Add welcome email and project settings" />
     <MESSAGE value="Add password reset" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add password reset" />
+    <MESSAGE value="Refactor belongsTo" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor belongsTo" />
   </component>
 </project>

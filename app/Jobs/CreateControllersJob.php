@@ -44,13 +44,12 @@ class CreateControllersJob implements ShouldQueue
                 '#--LOWERCASE-MODEL-NAME--#',
                 '#--LOWERCASE-NAME-PLURAL--#',
             ], [
-                'use App\\Models\\' . $projectModel->name . ';',
+                $projectModel->model_import,
                 $projectModel->controller_name,
                 $projectModel->name,
                 Str::lower($projectModel->name),
                 Str::lower(Str::plural($projectModel->name))
             ], $stub);
-
 
             file_put_contents($this->project->folder . '/app/Http/Controllers/' . $projectModel->controller_name . 'Controller.php', $replacement);
         }

@@ -69,4 +69,8 @@ class ProjectModel extends Model
         return Str::plural(Str::lower($this->name));
     }
 
+    public function getModelImportAttribute() {
+        return 'use App\\Models\\' . $this->name . ';';
+    }
+
 }

@@ -134,7 +134,10 @@ class ProjectModelController extends Controller
 
             foreach($fieldData['validations'] as $key=>$validation) {
                 if($validation['name'] == "values") {
-                    $validation['value'] = json_encode($validation['value']);
+
+                    if(is_array($validation['value'])) {
+                        $validation['value'] = json_encode($validation['value']);
+                    }
                     $fieldData['validations'][$key] = $validation;
                 }
             }

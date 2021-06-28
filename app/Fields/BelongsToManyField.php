@@ -25,7 +25,7 @@ class BelongsToManyField extends Field
 
         return '
                   <div class="form-group" wire:ignore>
-                            <label for="' . $name . '">Example select</label>
+                            <label for="' . $name . '">' . $this->modelField->label . '</label>
                             <select
                                 class=""
                                 id="' . $name . '"

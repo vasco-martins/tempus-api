@@ -49,7 +49,7 @@ class CreateMenuJob implements ShouldQueue
                 $str .= '</x-navitem>';
                 continue;
             }
-            $str .= '<x-navitem title="' . $projectModel->label . '" :route="route(\'' . $projectModel->resource . '.index\')" title="' . $projectModel->label . '" activeRoute="' . $projectModel->resource . '/*" single />' . "\n\t";
+            $str .= '<x-navitem :route="route(\'' . $projectModel->resource . '.index\')" title="' . $projectModel->label . '" activeRoute="' . $projectModel->resource . '/*" single />' . "\n\t";
         }
         return $str;
     }

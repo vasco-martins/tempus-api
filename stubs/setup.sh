@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export HOME=$HOME && composer install
+php composer.phar install
 
 php artisan optimize:clear
 php artisan key:generate

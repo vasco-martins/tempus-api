@@ -8,6 +8,7 @@ use App\Models\Log;
 use App\Models\ModelField;
 use App\Models\ProjectModel;
 use Illuminate\Support\Str;
+use function Psy\debug;
 
 class BelongsToField extends Field
 {
@@ -56,6 +57,7 @@ class BelongsToField extends Field
         $lowerCaseModelName = $this->getLowerCaseModelNameSingular();
         $relation = ProjectModel::find($this->getValidation('crud'));
 
+        logger()->info('BelongsToField getTable Method Field #ID: ' . $this->getValidation('field'));
         $field = ModelField::find($this->getValidation('field'));
 
         return "{{ $" . $lowerCaseModelName . "Item->" . Str::camel($relation->label) .  "->" . $field->database_name . " ?? '' }}";

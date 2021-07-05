@@ -19,8 +19,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://unpkg.com/@coreui/coreui/dist/css/coreui.min.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.0/slimselect.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ asset('css/coreui.min.css') }}">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.0/css/perfect-scrollbar.min.css"
           integrity="sha512-n+g8P11K/4RFlXnx2/RW1EZK25iYgolW6Qn7I0F96KxJibwATH3OoVCQPh/hzlc4dWAwplglKX8IVNVMWUUdsw=="
@@ -59,7 +59,7 @@
     src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
     crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@coreui/coreui/dist/js/coreui.bundle.min.js"></script>
+<script src="{{ asset('js/coreui.min.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.0/slimselect.min.js"></script>
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
@@ -82,7 +82,16 @@
 
     window.livewire.on('changeInput', ({id, value}) => {
         const input = document.querySelector('#' + id);
-        input.value = value;
+        console.log(value);
+        if(Array.isArray(value)) {
+            const options = Array.from(document.querySelectorAll('#'  + id + ' option'));
+
+            value.forEach(function(v) {
+                options.find(c => c.value == v).selected = true;
+            });
+        } else {
+            input.value = value;
+        }
         const evt = document.createEvent('HTMLEvents');
         evt.initEvent('change', false, true);
         input.dispatchEvent(evt);

@@ -19,7 +19,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://unpkg.com/@coreui/coreui/dist/css/coreui.min.css">
+    <link rel="stylesheet" href="{{ asset('css/coreui.min.css') }}">
     <link rel="stylesheet" href="https://unpkg.com/@coreui/icons@2.0.0-beta.3/css/all.min.css">
 
 
@@ -93,7 +93,7 @@
     </div>
     </div>
 
-<script src="https://unpkg.com/@coreui/coreui/dist/js/coreui.bundle.min.js"></script>
+<script src="{{ asset('js/coreui.min.js') }}"></script>
 
 </div>
 </body>

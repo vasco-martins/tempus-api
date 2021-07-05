@@ -61,6 +61,7 @@ class CreateLivewireComponentLogicJob implements ShouldQueue
                 '#--RULES--#',
                 '#--FIELDS-DECLARATION--#',
                 '#--RESET-INPUTS--#',
+                '#--RELATIONSHIPS--#',
                 '#--SEARCHABLE-FIELDS--#'
             ], [
                 'use App\\Models\\' . $projectModel->name . ';',
@@ -73,6 +74,7 @@ class CreateLivewireComponentLogicJob implements ShouldQueue
                 $this->buildRules($projectModel),
                 $this->buildFieldsDeclaration($projectModel),
                 $this->buildResetInputs($projectModel),
+                $this->buildRelationships($projectModel),
                 $this->buildSearchableFields($projectModel)
 
             ], $stub);
@@ -90,6 +92,7 @@ class CreateLivewireComponentLogicJob implements ShouldQueue
         $str = '';
 
         foreach($projectModel->fields as $field) {
+
             $str .= "\n\t public $" . $field->database_name . ';';
         }
 
@@ -161,23 +164,26 @@ class CreateLivewireComponentLogicJob implements ShouldQueue
         $str = '';
 
         foreach ($projectModel->fields as $field) {
-            if($field->type == FieldType::BELONGS_TO) {
-                $str .= "\n\t\t\t" .'$this' . "->$field->database_name = '';";
-                continue;
+            $str .=  "\n\t\t\t";
 
+            if($field->type == FieldType::BELONGS_TO) {
+                $str .= '$this' . "->$field->database_name = '';";
+                continue;
             }
+
             if($field->type == FieldType::BELONGS_TO_MANY) {
-                $name = Str::endsWith($field->database_name, '_id') ? $field->database_name : $field->database_name . '_id';
-                $str .= "\n\t\t\t" .'$this' . "->$name = [];";
+                $relation = ProjectModel::find($this->getValidation($field, 'crud'));
+                $str .= 'isset($' . Str::lower(Str::singular($projectModel->name)) .') ?
+                $' . Str::lower(Str::singular($projectModel->name)) .'->' . Str::camel(Str::plural($relation->label)) . "->pluck('" . $field->database_name . "')->implode(', ') : [];";
                 continue;
 
             }
             if($field->type == FieldType::PASSWORD) {
-                $str .= "\n\t\t\t" .'$this' . "->$field->database_name = '';";
+                $str .= '$this' . "->$field->database_name = '';";
                 continue;
             }
 
-            $str .= "\n\t\t\t" .'$this' . "->$field->database_name = $" .  Str::lower(Str::singular($projectModel->name)) . "->" . $field->database_name . ' ??';
+            $str .= '$this' . "->$field->database_name = $" .  Str::lower(Str::singular($projectModel->name)) . "->" . $field->database_name . ' ??';
             switch ($field->type) {
                 case FieldType::STRING:
                 case FieldType::TEXTAREA:
@@ -197,7 +203,7 @@ class CreateLivewireComponentLogicJob implements ShouldQueue
             $str .= ';';
         }
 
-        $hasSelect = false;
+        //$hasSelect = false;
         $str .=  "\n\t\t" . 'if($' . Str::lower(Str::singular($projectModel->name)) . ') {' . "\n\t\t\t";
 
         foreach ($projectModel->fields as $field) {
@@ -205,12 +211,17 @@ class CreateLivewireComponentLogicJob implements ShouldQueue
 
                 $value = '$this->emit(\'changeInput\', [\'id\' => \'' . $field->database_name .'\', \'value\' => $' . Str::lower($projectModel->name) .'->' . $field->database_name .']);' . "\n\t\t\t";
 
-                if($hasSelect) {
-                   $str .= $value;
-                } else {
-                    $str .= $value;
-                    $hasSelect = true;
-                }
+                $str .= $value;
+                //$hasSelect = true;
+
+            }
+
+            if($field->type == FieldType::BELONGS_TO_MANY) {
+                $relation = ProjectModel::find($this->getValidation($field, 'crud'));
+
+                $value = '$this->emit(\'changeInput\', [\'id\' => \'' . $field->database_name .'\', \'value\' => $' . Str::lower($projectModel->name) .'->' . Str::camel(Str::plural($relation->label)) .'->pluck(\'id\')]);' . "\n\t\t\t";
+
+                $str .= $value;
             }
 
         }
@@ -231,4 +242,32 @@ class CreateLivewireComponentLogicJob implements ShouldQueue
         }
         return $str;
     }
+
+    private function buildRelationships($projectModel)
+    {
+       $str = '';
+
+        foreach ($projectModel->fields as $field) {
+            if($field->type == FieldType::BELONGS_TO_MANY) {
+                $relation = ProjectModel::find($this->getValidation($field, 'crud'));
+
+                $str .= 'isset($this->' . Str::lower(Str::singular($projectModel->name)) .') ?
+                $this->' . Str::lower(Str::singular($projectModel->name)) .'->' . Str::camel(Str::plural($relation->label)) . '()->sync($this->' . $field->database_name . ') :
+                $' . Str::lower(Str::singular($projectModel->name)) . '->' . Str::camel(Str::plural($relation->label)) . '()->attach($this->' . $field->database_name . ');' . "\n\t\t\t";
+            }
+        }
+
+        return $str;
+    }
+
+    protected function getValidation(ModelField $modelField, $validationName, $default = null) {
+        foreach ($modelField->validations as $validation) {
+            if($validation->name == $validationName) {
+                return $validation->value;
+            }
+        }
+
+        return $default;
+    }
+
 }

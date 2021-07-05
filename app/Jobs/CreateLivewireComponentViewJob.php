@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Fields\FieldsController;
+use App\Helpers\FieldType;
 use App\Models\Project;
 use App\Models\ProjectModel;
 use Illuminate\Bus\Queueable;
@@ -76,6 +77,7 @@ class CreateLivewireComponentViewJob implements ShouldQueue
     private function buildTableHead(ProjectModel $projectModel): string {
         $str = '';
         foreach($projectModel->fields as $field) {
+            if($field->type == FieldType::PASSWORD) continue;
             if($field->in_view) {
                 $str .= "<th>$field->label</th>\n\t\t\t\t\t";
             }
@@ -86,6 +88,7 @@ class CreateLivewireComponentViewJob implements ShouldQueue
     private function buildTableRow(ProjectModel $projectModel): string {
         $str = '';
         foreach($projectModel->fields as $field) {
+            if($field->type == FieldType::PASSWORD) continue;
             $fieldController = new FieldsController($field);
             if($field->in_view)     {
                 $str .= '<td>' . $fieldController->getField()->getTable() . '</td>' . "\n\t\t\t\t\t\t";

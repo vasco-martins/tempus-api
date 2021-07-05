@@ -71,7 +71,19 @@ class DeployProjectJob implements ShouldQueue
         File::makeDirectory($this->path, 0777, true, true);
 
         $fileSystem->mirror($this->project->folder, $this->path);
-        $fileSystem->copy(base_path('stubs/setup.sh'), $this->path . '/setup.sh');
+
+        $stub = file_get_contents(base_path('stubs/setup.sh'));
+
+        $replacement = str_replace([
+            '#--SOURCE_FILE--#',
+            '#--SYMBOLIC-LINK--#'
+        ], [
+            $this->path,
+            config('app.project_ln_path'),
+        ], $stub);
+
+        file_put_contents($this->path . '/setup.sh', $replacement);
+
 
         // 5 - A gerar os ficheiros de configuração
         $this->project->update(['deploy_status' => 4]);

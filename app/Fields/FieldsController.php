@@ -21,6 +21,7 @@ class FieldsController
         FieldType::EMAIL => EmailField::class,
         FieldType::SELECT => SelectField::class,
         FieldType::BELONGS_TO => BelongsToField::class,
+        FieldType::BELONGS_TO_MANY => BelongsToManyField::class,
         FieldType::DATE => DateField::class,
     ];
 

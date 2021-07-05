@@ -81,7 +81,9 @@ class Index extends Component
 
         isset($this->#--LOWERCASE-MODEL-NAME--#)
             ? $this->#--LOWERCASE-MODEL-NAME--#->update($data)
-            : #--MODEL-NAME--#::create($data);
+            : $#--LOWERCASE-MODEL-NAME--# = #--MODEL-NAME--#::create($data);
+
+        #--RELATIONSHIPS--#
 
         $this->closeModal();
         $this->emit('toast-success', isset($this->#--LOWERCASE-MODEL-NAME--#)

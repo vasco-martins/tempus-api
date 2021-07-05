@@ -3,6 +3,8 @@
         <h4 class="m-0">#--PROJECT-NAME--#</h4>
     </div>
     <ul class="c-sidebar-nav">
+        <x-navitem title="Início" :route="route('home')"  activeRoute="/" single />
+
         #--MENU-FIELDS--#
         <x-navitem title="Utilizadores" :route="route('users.index')"  activeRoute="users/*" single />
     </ul>

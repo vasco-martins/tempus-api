@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Fields\Field;
 use App\Helpers\FieldType;
 use App\Models\ModelField;
 use App\Models\Project;
@@ -69,6 +70,7 @@ class CreateModelsJob implements ShouldQueue
     {
         $str = '';
         foreach($projectModel->fields as $field) {
+            if($field->type == FieldType::BELONGS_TO_MANY) continue;
             $str .= "'$field->database_name',\n\t\t";
         }
         return $str;
@@ -95,6 +97,18 @@ class CreateModelsJob implements ShouldQueue
                 $relation = ProjectModel::find($this->getValidation($field, 'crud'));
                 $str .= 'public function ' . Str::camel($relation->label) . '() {
         return $this->belongsTo(\'App\\Models\\' .$relation->name . '\', \''  . $field->database_name .'\');
+    }'  . "\n\n\t" ;
+            }
+
+            if($field->type == FieldType::BELONGS_TO_MANY) {
+                $relation = ProjectModel::find($this->getValidation($field, 'crud'));
+
+                $names = [ucfirst(Str::singular($projectModel->database_name)), ucfirst(Str::singular($relation->database_name))];
+                sort($names);
+                $namesImploded = implode('', $names);
+
+                $str .= 'public function ' . Str::camel(Str::plural($relation->label)) . '() {
+        return $this->belongsToMany(\'App\\Models\\' .$relation->name . '\', \''  . Str::snake($namesImploded) .'\', \'' . Str::singular($projectModel->database_name) . '_id\', \'' . $relation->database_name . '_id\');
     }'  . "\n\n\t" ;
             }
         }

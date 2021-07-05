@@ -85,28 +85,46 @@ class CreateMigrationsJob implements ShouldQueue
         }
 
 
-       /*foreach($this->project->projectModels as $projectModel) {
+       foreach($this->project->projectModels as $projectModel) {
             $fields = $projectModel->fields()->where('type', FieldType::BELONGS_TO_MANY)->get();
 
-            if($fields->isEmpty()) {
-                continue;
+            foreach ($fields as $field) {
+                $crudValue = null;
+
+                foreach ($field->validations as $validation) {
+                    if($validation->name == 'crud') {
+                        $crudValue = $validation->value;
+                    }
+                }
+
+                $crud = ProjectModel::find($crudValue);
+
+                $names = [ucfirst(Str::singular($projectModel->database_name)), ucfirst(Str::singular($crud->database_name))];
+                sort($names);
+                $namesImploded = implode('', $names);
+
+
+                if($fields->isEmpty()) {
+                    continue;
+                }
+
+                $replacement = str_replace([
+                    '#--MIGRATION-CLASS--#',
+                    '#--TABLE-NAME--#',
+                    '#--MIGRATIONS--#'
+                ], [
+                    'Create' . $namesImploded . 'Table',
+                    Str::snake($namesImploded),
+                    $this->generateManyToManyRelations($fields)
+                ], $stub);
+
+                file_put_contents(
+                    $this->project->folder . '/database/migrations/' . now()->addSeconds(50)->format('Y_m_d_His') . '_create_' . Str::snake($namesImploded) . '_table.php',
+                    $replacement);
+
             }
 
-            $replacement = str_replace([
-                '#--MIGRATION-CLASS--#',
-                '#--TABLE-NAME--#',
-                '#--MIGRATIONS--#'
-            ], [
-                'AddRelationsTo' . Str::ucfirst(Str::plural(Str::camel($projectModel->name))) . 'Table',
-                $projectModel->database_name,
-                $this->generateManyToManyRelations($fields)
-            ], $editStub);
-
-            file_put_contents(
-                $this->project->folder . '/database/migrations/' . now()->addSeconds(50)->format('Y_m_d_His') . '_add_relations_to_' . $projectModel->database_name . '_table.php',
-                $replacement);
-
-        }*/
+        }
 
     }
 

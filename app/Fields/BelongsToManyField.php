@@ -32,7 +32,6 @@ class BelongsToManyField extends Field
                                 name="' . $name . '[]"
                                 multiple
                             >
-                            <option selected>Selecione uma opção</option>
                             @foreach(App\Models\\' . $valuesField->name . '::all() as $child)
                                 <option value="{{ $child->id }}">{{ $child->' . $field->database_name .' }}</option>
                             @endforeach
@@ -67,19 +66,22 @@ class BelongsToManyField extends Field
 
     public function getMigration(): string
     {
-        $isRequired = $this->getValidation('required') == null|false ? '->nullable()' : '';
+        //$this->getValidation('required') == null|false ?
+        $isRequired = '->nullable()';
 
         $relation = ProjectModel::find($this->getValidation('crud'));
 
-        $name = Str::endsWith($this->modelField->database_name, '_id') ? $this->modelField->database_name : $this->modelField->database_name . '_id';
-    //    $ownName = Str::endsWith($this->modelField->database_name, '_id') ? $this->modelField->database_name : $this->modelField->database_name . '_id';
+        $name = $this->modelField->database_name;
+        $ownName = $relation->database_name;
 
         if($relation == null) {
             return '';
         }
 
-        $str = '$table->foreignId(\'' . $name . '\')' . $isRequired . '->constrained(\'' . $relation->database_name . '\')->onDelete(\'cascade\');';
-        $str .= '$table->foreignId(\'' . $name . '\')' . $isRequired . '->constrained(\'' . $relation->database_name . '\')->onDelete(\'cascade\');';
+        // Relation field
+        $str = '$table->foreignId(\'' . Str::singular($this->modelField->projectModel->database_name) . '_id\')' . $isRequired . '->constrained(\'' . $this->modelField->projectModel->database_name . '\')->onDelete(\'cascade\');';
+        // Current field
+        $str .= "\n\t\t\t" . '$table->foreignId(\'' . $ownName   . '_id\')' . $isRequired . '->constrained(\'' . $ownName . '\')->onDelete(\'cascade\');';
 
         return $str;
     }

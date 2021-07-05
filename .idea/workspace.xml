@@ -4,25 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b753790-f878-4562-9790-bc258a1ab44a" name="Default Changelist" comment="Refactor belongsTo">
-      <change afterPath="$PROJECT_DIR$/themes/coreui/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/themes/coreui/app/Http/Livewire/User/Index.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/themes/coreui/resources/views/livewire/users/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/themes/coreui/resources/views/users/index.blade.php" afterDir="false" />
+    <list default="true" id="8b753790-f878-4562-9790-bc258a1ab44a" name="Default Changelist" comment="Bug fixes">
+      <change afterPath="$PROJECT_DIR$/themes/coreui/public/css/coreui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/coreui/public/js/coreui.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Fields/BelongsToField.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Fields/BelongsToField.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Fields/BelongsToManyField.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Fields/BelongsToManyField.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Fields/SelectField.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Fields/SelectField.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Fields/FieldsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Fields/FieldsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectModelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectModelController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Jobs/CreateControllersJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/CreateControllersJob.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Jobs/CreateMenuJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/CreateMenuJob.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ProjectModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ProjectModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stubs/coreui/routes/web.stub" beforeDir="false" afterPath="$PROJECT_DIR$/stubs/coreui/routes/web.stub" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stubs/coreui/views/livewire.stub" beforeDir="false" afterPath="$PROJECT_DIR$/stubs/coreui/views/livewire.stub" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Jobs/CreateLivewireComponentLogicJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/CreateLivewireComponentLogicJob.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Jobs/CreateLivewireComponentViewJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/CreateLivewireComponentViewJob.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Jobs/CreateMigrationsJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/CreateMigrationsJob.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Jobs/CreateModelsJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/CreateModelsJob.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Jobs/DeployProjectJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/DeployProjectJob.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/ModelField.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ModelField.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stubs/coreui/app/livewire.stub" beforeDir="false" afterPath="$PROJECT_DIR$/stubs/coreui/app/livewire.stub" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stubs/coreui/views/menu.stub" beforeDir="false" afterPath="$PROJECT_DIR$/stubs/coreui/views/menu.stub" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/coreui/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/themes/coreui/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/coreui/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/themes/coreui/database/seeders/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/coreui/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/themes/coreui/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stubs/setup.sh" beforeDir="false" afterPath="$PROJECT_DIR$/stubs/setup.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/coreui/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/themes/coreui/resources/views/auth/login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/coreui/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/themes/coreui/resources/views/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/coreui/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/themes/coreui/resources/views/layouts/app.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +34,14 @@
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -217,6 +227,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/themes/coreui/app/Http/Controllers" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="settings.editor.selected.configurable" value="settings.saveactions" />
@@ -348,7 +359,10 @@
       <workItem from="1624004477122" duration="1565000" />
       <workItem from="1624392524297" duration="1223000" />
       <workItem from="1624460191102" duration="52000" />
-      <workItem from="1624872462702" duration="5091000" />
+      <workItem from="1624872462702" duration="11390000" />
+      <workItem from="1625306752739" duration="2437000" />
+      <workItem from="1625390218573" duration="13863000" />
+      <workItem from="1625474514925" duration="3953000" />
     </task>
     <task id="LOCAL-00001" summary="Add some things">
       <created>1619681575637</created>
@@ -483,7 +497,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623746001534</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Bug fixes">
+      <created>1624883027193</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1624883027193</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -518,6 +539,7 @@
     <MESSAGE value="Add welcome email and project settings" />
     <MESSAGE value="Add password reset" />
     <MESSAGE value="Refactor belongsTo" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor belongsTo" />
+    <MESSAGE value="Bug fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug fixes" />
   </component>
 </project>

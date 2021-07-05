@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\FieldType;
 use App\Http\Requests\ProjectModel\CreateProjectModel;
+use App\Http\Requests\ProjectModel\UpdateProjectModel;
 use App\Jobs\CreateControllersJob;
 use App\Jobs\CreateEnvExampleJob;
 use App\Jobs\CreateIndexViewJob;
@@ -110,11 +111,11 @@ class ProjectModelController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \App\Http\Requests\ProjectModel\CreateProjectModel $request
+     * @param \App\Http\Requests\ProjectModel\UpdateProjectModel $request
      * @param \App\Models\ProjectModel $projectModel
      * @return void
      */
-    public function update(CreateProjectModel $request, ProjectModel $projectModel)
+    public function update(UpdateProjectModel $request, ProjectModel $projectModel)
     {
         $data = $request->validated();
         $project = Project::find($data['project_id']);
@@ -127,11 +128,16 @@ class ProjectModelController extends Controller
         }
 
         $projectModel->update($data);
-        $projectModel->fields()->delete();
 
+        $ids = [];
         foreach ($data['fields'] as $fieldData) {
-            $field = $projectModel->fields()->create($fieldData);
-
+            if(is_null($fieldData['id'])) {
+                $field = $projectModel->fields()->create($fieldData);
+            } else {
+                $field = ModelField::find($fieldData['id']);
+                $field->update($fieldData);
+            }
+            $field->validations()->delete();
             foreach($fieldData['validations'] as $key=>$validation) {
                 if($validation['name'] == "values") {
 
@@ -143,7 +149,10 @@ class ProjectModelController extends Controller
             }
 
             $field->validations()->createMany($fieldData['validations']);
+            array_push($ids, $field->id);
         }
+
+        $projectModel->fields()->whereNotIn('id', $ids)->delete();
 
         Project::executeProjectJob($project);
 

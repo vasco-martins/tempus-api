@@ -42,4 +42,7 @@ class ModelField extends Model
         return $this->hasMany(ModelFieldValidation::class);
     }
 
+    public function projectModel() {
+        return $this->belongsTo(ProjectModel::class);
+    }
 }

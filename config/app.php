@@ -59,6 +59,7 @@ return [
     'project_deploy_path' => env('PROJECT_DEPLOY_PATH', null),
     'project_db_username' => env('PROJECT_DB_USERNAME', null),
     'project_db_password' => env('PROJECT_DB_PASSWORD', null),
+    'project_ln_path' => env('PRODUCTION_LN_PATH', null),
 
     /*
     |--------------------------------------------------------------------------

@@ -93,7 +93,8 @@ class ProjectController extends Controller
     /**
      * @throws \PhpZip\Exception\ZipException
      */
-    public function download(string $hash) {
+    public function download(string $hash): \Symfony\Component\HttpFoundation\BinaryFileResponse
+    {
         $project = Project::where('hash', $hash)->first();
 
         $zipName = base_path('zipfolders/' . $project->filename . '.zip');
@@ -108,8 +109,18 @@ class ProjectController extends Controller
             $zipFile->close();
         }*/
 
-        $gitInit = new Process(['sudo', 'zip', $project->filename . '.zip', $project->folder]);
-        $gitInit->setWorkingDirectory(base_path('zipfolders'));
+        $gitInit = new Process(['sudo', 'zip', $project->filename . '.zip', $project->slug]);
+        $gitInit->setWorkingDirectory(base_path('projects'));
+
+        $gitInit->run();
+        $gitInit->wait();
+        \Illuminate\Support\Facades\Log::debug(
+            $gitInit->getErrorOutput());
+        \Illuminate\Support\Facades\Log::debug(
+            $gitInit->getOutput());
+
+        $gitInit = new Process(['sudo', 'mv', $project->filename . '.zip', base_path('zipfolders/') . $project->filename . '.zip']);
+        $gitInit->setWorkingDirectory(base_path('projects'));
 
         $gitInit->run();
         $gitInit->wait();

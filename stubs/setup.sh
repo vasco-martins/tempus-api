@@ -1,7 +1,4 @@
 #!/bin/bash
-
-php composer.phar install
-
 php artisan optimize:clear
 php artisan key:generate
 php artisan optimize

@@ -100,7 +100,7 @@ class DeployProjectJob implements ShouldQueue
         // 4 - A instalar os ficheiros de configuração
         $this->project->update(['deploy_status' => 5]);
 
-        $this->runCommandWait(['composer', 'install']);
+        $this->runCommandWait(['export', 'HOME=$HOME', '&&','composer', 'install']);
 
 
         // 4 - A realizar as migrações

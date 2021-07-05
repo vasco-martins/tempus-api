@@ -80,7 +80,7 @@ class DeployProjectJob implements ShouldQueue
                 '#--SYMBOLIC-LINK--#'
             ], [
                 $this->path,
-                config('app.project_ln_path'),
+                config('app.project_ln_path') . $this->project->slug ,
             ], $stub);
 
             file_put_contents($this->path . '/setup.sh', $replacement);
@@ -100,8 +100,6 @@ class DeployProjectJob implements ShouldQueue
         $this->project->update(['deploy_status' => 5]);
 
        // $this->runCommandWait(['yes', '|', 'php','composer.phar', 'install']);
-
-
 
         // 4 - A realizar as migrações
 

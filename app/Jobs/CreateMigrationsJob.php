@@ -146,7 +146,6 @@ class CreateMigrationsJob implements ShouldQueue
         $str = '';
 
         foreach($fields as  $field) {
-            if($field->type == FieldType::BELONGS_TO_MANY) continue;
             $fieldController = new FieldsController($field);
             $str .=  $fieldController->getField()->getMigration() . "\n\t\t\t";
         }
@@ -158,7 +157,7 @@ class CreateMigrationsJob implements ShouldQueue
         $str = '';
 
         foreach ($projectModel->fields as $field) {
-            if($field->type == FieldType::BELONGS_TO) continue;
+            if($field->type == FieldType::BELONGS_TO || $field->type == FieldType::BELONGS_TO_MANY) continue;
             $fieldController = new FieldsController($field);
             $str .=  $fieldController->getField()->getMigration() . "\n\t\t\t";
         }

@@ -117,7 +117,7 @@ class Project extends Model
             return 'http://' . $this->slug . '.test';
         }
 
-        return 'http://' . $this->slug .'avogg.pt/';
+        return 'http://' . $this->slug .'.avogg.pt/';
      }
 
 }

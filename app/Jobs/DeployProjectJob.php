@@ -49,7 +49,7 @@ class DeployProjectJob implements ShouldQueue
         // 2 - Preparar o ambiente
         $this->project->update(['deploy_status' => 1]);
 
-        $this->runCommandWait(['rm', '-rf',  $this->path]);
+        $this->runCommandWait(['sudo', 'rm', '-rf',  $this->path]);
 
 
 
@@ -102,6 +102,7 @@ class DeployProjectJob implements ShouldQueue
         $this->runCommandWait(['php', 'composer.phar', 'install']);
 
 
+
         // 4 - A realizar as migrações
 
         $this->project->update(['deploy_status' => 6]);
@@ -149,6 +150,7 @@ class DeployProjectJob implements ShouldQueue
     {
         $gitInit = new Process($command);
         $gitInit->setWorkingDirectory($this->path);
+
         $gitInit->run();
         $gitInit->wait();
         \Illuminate\Support\Facades\Log::debug(

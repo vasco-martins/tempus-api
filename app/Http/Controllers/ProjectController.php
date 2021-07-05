@@ -97,7 +97,7 @@ class ProjectController extends Controller
         $project = Project::where('hash', $hash)->first();
 
         $zipName = base_path('zipfolders/' . $project->filename . '.zip');
-        $zipFile = new ZipFile();
+       /* $zipFile = new ZipFile();
 
         try {
             $zipFile->addDirRecursive($project->folder)->saveAsFile($zipName)->close();
@@ -106,9 +106,9 @@ class ProjectController extends Controller
         }
         finally{
             $zipFile->close();
-        }
+        }*/
 
- /*       $gitInit = new Process(['sudo', 'zip', $project->filename . '.zip', $project->folder]);
+        $gitInit = new Process(['sudo', 'zip', $project->filename . '.zip', $project->folder]);
         $gitInit->setWorkingDirectory(base_path('zipfolders'));
 
         $gitInit->run();
@@ -116,7 +116,7 @@ class ProjectController extends Controller
         \Illuminate\Support\Facades\Log::debug(
             $gitInit->getErrorOutput());
         \Illuminate\Support\Facades\Log::debug(
-            $gitInit->getOutput());*/
+            $gitInit->getOutput());
 
         return response()->download(base_path('zipfolders/' . $project->filename . '.zip'));
     }

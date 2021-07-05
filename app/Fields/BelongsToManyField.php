@@ -50,7 +50,7 @@ class BelongsToManyField extends Field
          new TomSelect(\'#' . $name . '\', {
              plugins: [\'change_listener\'],
             onChange: (value) => {
-                @this.set(\'' . $name . '\', value);
+                @this.set(\'' . $this->modelField->database_name . '\', value);
             }
         });';    }
 

@@ -1,4 +1,7 @@
 #!/bin/bash
+
+yes | sudo php -d memory_limit=-1 composer.phar install
+
 php artisan optimize:clear
 php artisan key:generate
 php artisan optimize

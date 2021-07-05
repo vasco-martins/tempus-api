@@ -99,7 +99,7 @@ class DeployProjectJob implements ShouldQueue
         // 4 - A instalar os ficheiros de configuração
         $this->project->update(['deploy_status' => 5]);
 
-        $this->runCommandWait(['yes', '|', 'COMPOSER_MEMORY_LIMIT=-1', 'php','composer.phar', 'install']);
+       // $this->runCommandWait(['yes', '|', 'php','composer.phar', 'install']);
 
 
 

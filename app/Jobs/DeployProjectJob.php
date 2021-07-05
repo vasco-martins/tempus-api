@@ -49,10 +49,9 @@ class DeployProjectJob implements ShouldQueue
         // 2 - Preparar o ambiente
         $this->project->update(['deploy_status' => 1]);
 
+        $this->runCommandWait(['rm', '-rf',  $this->path]);
 
-        if(is_dir($this->path)) {
-            $this->delTree($this->path);
-        }
+
 
         // 3 - A criar a base de dados
         $this->project->update(['deploy_status' => 2]);

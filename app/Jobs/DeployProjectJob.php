@@ -72,17 +72,22 @@ class DeployProjectJob implements ShouldQueue
 
         $fileSystem->mirror($this->project->folder, $this->path);
 
-        $stub = file_get_contents(base_path('stubs/setup.sh'));
+        if(config('app.env') != 'local') {
 
-        $replacement = str_replace([
-            '#--SOURCE_FILE--#',
-            '#--SYMBOLIC-LINK--#'
-        ], [
-            $this->path,
-            config('app.project_ln_path'),
-        ], $stub);
+            $stub = file_get_contents(base_path('stubs/setup.sh'));
 
-        file_put_contents($this->path . '/setup.sh', $replacement);
+            $replacement = str_replace([
+                '#--SOURCE_FILE--#',
+                '#--SYMBOLIC-LINK--#'
+            ], [
+                $this->path,
+                config('app.project_ln_path'),
+            ], $stub);
+
+            file_put_contents($this->path . '/setup.sh', $replacement);
+        } else {
+            $fileSystem->copy(base_path('stubs/setup.dev.sh'), $this->path . '/setup.sh');
+        }
 
 
         // 5 - A gerar os ficheiros de configuração

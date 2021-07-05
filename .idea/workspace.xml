@@ -4,27 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b753790-f878-4562-9790-bc258a1ab44a" name="Default Changelist" comment="Bug fixes">
-      <change afterPath="$PROJECT_DIR$/themes/coreui/public/css/coreui.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/themes/coreui/public/js/coreui.min.js" afterDir="false" />
+    <list default="true" id="8b753790-f878-4562-9790-bc258a1ab44a" name="Default Changelist" comment="Update cors">
+      <change afterPath="$PROJECT_DIR$/stubs/setup.dev.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Fields/BelongsToField.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Fields/BelongsToField.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Fields/BelongsToManyField.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Fields/BelongsToManyField.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Fields/FieldsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Fields/FieldsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectModelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectModelController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Jobs/CreateLivewireComponentLogicJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/CreateLivewireComponentLogicJob.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Jobs/CreateLivewireComponentViewJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/CreateLivewireComponentViewJob.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Jobs/CreateMigrationsJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/CreateMigrationsJob.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Jobs/CreateModelsJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/CreateModelsJob.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Jobs/DeployProjectJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/DeployProjectJob.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ModelField.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ModelField.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stubs/coreui/app/livewire.stub" beforeDir="false" afterPath="$PROJECT_DIR$/stubs/coreui/app/livewire.stub" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stubs/coreui/views/menu.stub" beforeDir="false" afterPath="$PROJECT_DIR$/stubs/coreui/views/menu.stub" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stubs/setup.sh" beforeDir="false" afterPath="$PROJECT_DIR$/stubs/setup.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/coreui/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/themes/coreui/resources/views/auth/login.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/coreui/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/themes/coreui/resources/views/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/coreui/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/themes/coreui/resources/views/layouts/app.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -226,7 +209,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/themes/coreui/app/Http/Controllers" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/stubs" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
@@ -235,11 +218,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/stubs" />
       <recent name="$PROJECT_DIR$/themes/coreui/app/Http/Controllers" />
       <recent name="$PROJECT_DIR$/themes/coreui/resources/views/livewire" />
       <recent name="$PROJECT_DIR$/themes/coreui/resources" />
       <recent name="$PROJECT_DIR$/themes/coreui/app/Http/Livewire" />
-      <recent name="$PROJECT_DIR$/app/Fields" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/themes/coreui/resources/views" />
@@ -362,7 +345,8 @@
       <workItem from="1624872462702" duration="11390000" />
       <workItem from="1625306752739" duration="2437000" />
       <workItem from="1625390218573" duration="13863000" />
-      <workItem from="1625474514925" duration="3953000" />
+      <workItem from="1625474514925" duration="8329000" />
+      <workItem from="1625496894009" duration="1841000" />
     </task>
     <task id="LOCAL-00001" summary="Add some things">
       <created>1619681575637</created>
@@ -504,7 +488,56 @@
       <option name="project" value="LOCAL" />
       <updated>1624883027193</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Bug fixes">
+      <created>1625483132844</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1625483132844</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Remove theme">
+      <created>1625483222810</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1625483222810</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Remove web route">
+      <created>1625486055301</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1625486055301</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Update ssh">
+      <created>1625486803981</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1625486803983</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Update sh">
+      <created>1625486833587</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1625486833587</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Update Project.php">
+      <created>1625486979738</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1625486979738</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Update cors">
+      <created>1625496183289</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1625496183290</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -540,6 +573,12 @@
     <MESSAGE value="Add password reset" />
     <MESSAGE value="Refactor belongsTo" />
     <MESSAGE value="Bug fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug fixes" />
+    <MESSAGE value="Remove theme" />
+    <MESSAGE value="Remove web route" />
+    <MESSAGE value="Update ssh" />
+    <MESSAGE value="Update sh" />
+    <MESSAGE value="Update Project.php" />
+    <MESSAGE value="Update cors" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update cors" />
   </component>
 </project>

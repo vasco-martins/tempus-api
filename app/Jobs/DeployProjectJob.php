@@ -153,6 +153,8 @@ class DeployProjectJob implements ShouldQueue
         $gitInit->run();
         $gitInit->wait();
         \Illuminate\Support\Facades\Log::debug(
+            $gitInit->getErrorOutput());
+        \Illuminate\Support\Facades\Log::debug(
             $gitInit->getOutput());
     }
 }

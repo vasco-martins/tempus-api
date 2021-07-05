@@ -49,7 +49,7 @@ class DeployProjectJob implements ShouldQueue
         // 2 - Preparar o ambiente
         $this->project->update(['deploy_status' => 1]);
 
-        $this->runCommandWait(['sudo', 'rm', '-rf',  $this->path]);
+        $this->runCommandWait(['sudo', 'rm', '-rf',  $this->path], '/home/');
 
 
 
@@ -67,7 +67,7 @@ class DeployProjectJob implements ShouldQueue
 
         // Create Folder
 
-        $this->runCommandWait(['sudo','mkdir', $this->path]);
+        File::makeDirectory($this->path, 0777, true, true);
 
         $fileSystem->mirror($this->project->folder, $this->path);
 
@@ -144,10 +144,12 @@ class DeployProjectJob implements ShouldQueue
         return rmdir($dir);
     }
 
-    private function runCommandWait(array $command)
+    private function runCommandWait(array $command, $path = null)
     {
+        if($path == null) $path = $this->path;
+
         $gitInit = new Process($command);
-        $gitInit->setWorkingDirectory($this->path);
+        $gitInit->setWorkingDirectory($path);
 
         $gitInit->run();
         $gitInit->wait();

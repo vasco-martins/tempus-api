@@ -67,7 +67,7 @@ class DeployProjectJob implements ShouldQueue
 
         // Create Folder
 
-        File::makeDirectory($this->path, 0777, true, true);
+        $this->runCommandWait(['sudo','mkdir', $this->path]);
 
         $fileSystem->mirror($this->project->folder, $this->path);
 

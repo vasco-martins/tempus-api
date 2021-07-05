@@ -109,7 +109,7 @@ class ProjectController extends Controller
             $zipFile->close();
         }*/
 
-        $gitInit = new Process(['sudo', 'zip', $project->filename . '.zip', $project->slug]);
+        $gitInit = new Process(['sudo', 'zip', '-r', $project->filename . '.zip', $project->slug]);
         $gitInit->setWorkingDirectory(base_path('projects'));
 
         $gitInit->run();

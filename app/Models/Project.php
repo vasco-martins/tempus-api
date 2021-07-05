@@ -113,7 +113,11 @@ class Project extends Model
     }
 
     public function getDeployUrlAttribute() {
-        return 'http://' . $this->slug . '.test';
+        if(config('app.env') == 'local') {
+            return 'http://' . $this->slug . '.test';
+        }
+
+        return 'http://avogg.pt/' . $this->slug;
      }
 
 }

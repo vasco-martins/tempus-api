@@ -10,6 +10,7 @@ use App\Models\ModelField;
 use App\Models\Project;
 use App\Models\ProjectModel;
 use PhpZip\ZipFile;
+use Symfony\Component\Process\Process;
 
 class ProjectController extends Controller
 {
@@ -96,7 +97,7 @@ class ProjectController extends Controller
         $project = Project::where('hash', $hash)->first();
 
         $zipName = base_path('zipfolders/' . $project->filename . '.zip');
-        $zipFile = new ZipFile();
+    /*    $zipFile = new ZipFile();
 
         try {
             $zipFile->addDirRecursive($project->folder)->saveAsFile($zipName)->close();
@@ -105,7 +106,17 @@ class ProjectController extends Controller
         }
         finally{
             $zipFile->close();
-        }
+        }*/
+
+        $gitInit = new Process(['sudo', 'zip', $project->filename . '.zip', $project->folder]);
+        $gitInit->setWorkingDirectory(base_path('zipfolders'));
+
+        $gitInit->run();
+        $gitInit->wait();
+        \Illuminate\Support\Facades\Log::debug(
+            $gitInit->getErrorOutput());
+        \Illuminate\Support\Facades\Log::debug(
+            $gitInit->getOutput());
 
         return response()->download(base_path('zipfolders/' . $project->filename . '.zip'));
     }

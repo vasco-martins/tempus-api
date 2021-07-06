@@ -51,7 +51,7 @@ class DeployProjectJob implements ShouldQueue
 
         $this->runCommandWait(['sudo', 'rm', '-rf',  $this->path], '/home/');
 
-
+        sleep(2);
 
         // 3 - A criar a base de dados
         $this->project->update(['deploy_status' => 2]);
@@ -61,10 +61,14 @@ class DeployProjectJob implements ShouldQueue
         DB::statement('DROP DATABASE IF EXISTS ' . $this->database);
         DB::statement('CREATE DATABASE ' . $this->database);
 
+
+        sleep(3);
+
         // 4 - A criar a pasta do projeto
         $this->project->update(['deploy_status' => 3]);
 
 
+        sleep(2);
         // Create Folder
 
         File::makeDirectory($this->path, 0777, true, true);
@@ -89,11 +93,16 @@ class DeployProjectJob implements ShouldQueue
         }
 
 
+        sleep(5);
+
         // 5 - A gerar os ficheiros de configuração
         $this->project->update(['deploy_status' => 4]);
 
 
         $this->generateEnv();
+
+
+        sleep(2);
 
 
         // 4 - A instalar os ficheiros de configuração

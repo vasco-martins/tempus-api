@@ -64,9 +64,9 @@ class ShowFieldsListController extends Controller
                     ],
                     [
                         "name" => "unique",
-                        "label" => "Único na Tabela:",
-                        "type" => "text",
-                        "required" => false
+                        "label" => "Único",
+                        "type" => "checkbox",
+                        "required" => false,
                     ],
                 ]
             ],

@@ -218,7 +218,7 @@ class CreateLivewireComponentLogicJob implements ShouldQueue
 
             if($field->type == FieldType::BELONGS_TO_MANY) {
                 $relation = ProjectModel::find($this->getValidation($field, 'crud'));
-                $name = Str::endsWith($field->database_name->database_name, '_id') ? $field->database_name->database_name : $field->database_name->database_name . '_id';
+                $name = Str::endsWith($field->database_name, '_id') ? $field->database_name : $field->database_name . '_id';
 
                 $value = '$this->emit(\'changeInput\', [\'id\' => \'' . $name .'\', \'value\' => $' . Str::lower($projectModel->name) .'->' . Str::camel(Str::plural($relation->label)) .'->pluck(\'id\')]);' . "\n\t\t\t";
 

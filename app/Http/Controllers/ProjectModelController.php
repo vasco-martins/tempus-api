@@ -57,6 +57,7 @@ class ProjectModelController extends Controller
     {
         $data = $request->validated();
         $project = Project::find($data['project_id']);
+        $project->touch();
 
         $index = $project->menu()->where('project_model_id', $data['project_model_id'])->orderBy('order', 'desc')->first();
 
@@ -128,6 +129,8 @@ class ProjectModelController extends Controller
         }
 
         $projectModel->update($data);
+        $projectModel->touch();
+        $projectModel->project->touch();
 
         $ids = [];
         foreach ($data['fields'] as $fieldData) {
@@ -168,6 +171,7 @@ class ProjectModelController extends Controller
     public function destroy(ProjectModel $projectModel)
     {
         $project = $projectModel->project;
+        $projectModel->project->touch();
 
         $index = $project->menu()->where('project_model_id', null)->orderBy('order', 'desc')->first();
 

@@ -195,6 +195,7 @@ class CreateLivewireComponentLogicJob implements ShouldQueue
                     break;
                 case FieldType::NUMBER:
                 case FieldType::BELONGS_TO:
+                case FieldType::BOOLEAN:
                     $str .= "0";
                     break;
                 default:

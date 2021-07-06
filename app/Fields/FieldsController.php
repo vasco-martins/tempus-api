@@ -20,6 +20,7 @@ class FieldsController
         FieldType::PASSWORD => PasswordField::class,
         FieldType::EMAIL => EmailField::class,
         FieldType::SELECT => SelectField::class,
+        FieldType::BOOLEAN => BooleanField::class,
         FieldType::BELONGS_TO => BelongsToField::class,
         FieldType::BELONGS_TO_MANY => BelongsToManyField::class,
         FieldType::DATE => DateField::class,

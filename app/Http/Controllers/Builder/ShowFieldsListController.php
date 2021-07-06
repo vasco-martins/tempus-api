@@ -71,6 +71,14 @@ class ShowFieldsListController extends Controller
                 ]
             ],
             [
+                "type" => FieldType::BOOLEAN,
+                "label" => "Checkbox",
+                "validations" => [
+
+
+                ]
+            ],
+            [
                 "type" => FieldType::DATE,
                 "label" => "Data",
                 "validations" => [

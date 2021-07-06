@@ -16,7 +16,7 @@ abstract class FieldType
     const BELONGS_TO = 'belongsTo';
     const BELONGS_TO_MANY = 'belongsToMany';
     const DATE = 'date';
-     // const BOOLEAN = 'boolean';
+    const BOOLEAN = 'boolean';
      // const IMAGE = 'image';
      //const MONEY = 'money';
 

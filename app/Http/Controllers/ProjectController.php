@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\FieldType;
 use App\Http\Requests\Projects\CreateProjectRequest;
 use App\Http\Resources\ProjectCollection;
+use App\Jobs\DeleteProjectJob;
 use App\Jobs\DeployProjectJob;
 use App\Models\ModelField;
 use App\Models\Project;
@@ -84,6 +85,8 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         abort_if($project->user->id != auth()->user()->id, 503);
+
+        DeleteProjectJob::dispatch($project);
 
         $project->delete();
 

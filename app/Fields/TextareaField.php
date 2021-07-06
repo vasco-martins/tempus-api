@@ -80,7 +80,7 @@ class TextareaField extends Field
     public function getTable(): string
     {
         $lowerCaseModelName = $this->getLowerCaseModelNameSingular();
-        return "{{ \Illuminate\Support\Str::words(strip_tags($" . $lowerCaseModelName . "Item->" . $this->modelField->database_name . "), 10,'...')  }}";
+        return "{{ \Illuminate\Support\Str::limit(strip_tags($" . $lowerCaseModelName . "Item->" . $this->modelField->database_name . "), 10,'...')  }}";
     }
 
     public function getMigration(): string

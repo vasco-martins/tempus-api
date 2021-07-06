@@ -23,7 +23,8 @@ class Project extends Model
         'name',
         'user_id',
         'hash',
-        'deploy_status'
+        'deploy_status',
+        'updated_at',
     ];
 
     public const DEPLOY_STATUS = [

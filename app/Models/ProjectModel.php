@@ -11,7 +11,7 @@ class ProjectModel extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'label', 'soft_delete', 'project_id', 'order', 'is_parent', 'project_model_id'
+        'name', 'label', 'soft_delete', 'project_id', 'order', 'is_parent', 'project_model_id', 'updated_at'
     ];
 
     protected $dates = [

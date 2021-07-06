@@ -147,7 +147,7 @@ class CreateLivewireComponentLogicJob implements ShouldQueue
                     break;
                 case 'unique':
                     if($validation->value == 1) {
-                        $str .= 'unique:' . $field->model->name  . ',' . $field->database_name . '|';
+                        $str .= 'unique:' . $field->model->database_name  . ',' . $field->database_name . '|';
                     }
                     break;
                 default:

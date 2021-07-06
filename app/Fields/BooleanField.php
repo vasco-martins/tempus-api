@@ -13,7 +13,7 @@ class BooleanField extends Field
     {
 
         return '
-            <div class="input-group mb-3">
+            <div class="input-group my-3">
              <label class="inline-flex items-center">
                     <input type="checkbox" value="1" class="form-checkbox @error(\''. $this->modelField->database_name . '\') is-invalid @enderror"
                                    wire:model="'. $this->modelField->database_name . '" name="' . $this->modelField->label . '">

@@ -106,7 +106,7 @@ class Index extends Component
         $ignore = isset($this->user) ? ',' . $this->user->id : '';
         return [
             'name' => 'string|required|min:3',
-			'email' => 'email|required|unique:users,email,' . $ignore,
+			'email' => 'email|required|unique:users,email' . $ignore,
 			'password' => '' . $this->user == null ? 'required' : 'nullable' . '',
         ];
     }

@@ -94,19 +94,19 @@ class Index extends Component
     private function resetInputs(User $user = null)
     {
 
-			$this->name = $user->name ??'';
-			$this->email = $user->email ??'';
-			$this->password = '';
-		if($user) {
-			}
+        $this->name = $user->name ??'';
+        $this->email = $user->email ??'';
+        $this->password = '';
+
         $this->emit('clear-input');
     }
 
     public function rules()
     {
+        $ignore = isset($this->user) ? ',' . $this->user->id : '';
         return [
             'name' => 'string|required|min:3',
-			'email' => 'email|required',
+			'email' => 'email|required|unique:users,email,' . $ignore,
 			'password' => '' . $this->user == null ? 'required' : 'nullable' . '',
         ];
     }

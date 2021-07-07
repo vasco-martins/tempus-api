@@ -38,7 +38,7 @@ class BooleanField extends Field
     public function getTable(): string
     {
         $lowerCaseModelName = $this->getLowerCaseModelNameSingular();
-        return '<input  type="checkbox" value="{{ $' . $lowerCaseModelName . 'Item->' . $this->modelField->database_name . ' ?? 0 }}">';
+        return '<input  type="checkbox" value="1" {{ $' . $lowerCaseModelName . 'Item->' . $this->modelField->database_name . ' == 1 ? \'checked\' : \'\' }}>';
     }
 
     public function getMigration(): string

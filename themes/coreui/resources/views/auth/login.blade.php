@@ -33,7 +33,7 @@
 
                 <div class="card-body">
                     <h1>Login</h1>
-                    <p class="text-muted">Sign In to your account</p>
+                    <p class="text-muted">Faz login com a tua conta</p>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 

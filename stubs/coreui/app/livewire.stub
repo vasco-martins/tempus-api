@@ -99,6 +99,7 @@ class Index extends Component
 
     public function rules()
     {
+        $ignore  = isset($this->#--LOWERCASE-MODEL-NAME--#) ? ',' .  $this->#--LOWERCASE-MODEL-NAME--#->id : '';
         return [
             #--RULES--#
         ];

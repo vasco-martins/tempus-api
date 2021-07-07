@@ -210,7 +210,7 @@ class CreateLivewireComponentLogicJob implements ShouldQueue
         foreach ($projectModel->fields as $field) {
             if($field->type == FieldType::SELECT || $field->type == FieldType::BELONGS_TO) {
 
-                $value = '$this->emit(\'changeInput\', [\'id\' => \'' . $field->database_name .'\', \'value\' => $' . Str::lower($projectModel->name) .'->' . $field->database_name .']);' . "\n\t\t\t";
+                $value = '$this->emit(\'changeInput\', [\'id\' => \'' . $field->database_name .'\', \'value\' => $' . Str::lower(Str::singular($projectModel->name)) .'->' . $field->database_name .']);' . "\n\t\t\t";
 
                 $str .= $value;
                 //$hasSelect = true;
@@ -221,7 +221,7 @@ class CreateLivewireComponentLogicJob implements ShouldQueue
                 $relation = ProjectModel::find($this->getValidation($field, 'crud'));
                 $name = Str::endsWith($field->database_name, '_id') ? $field->database_name : $field->database_name . '_id';
 
-                $value = '$this->emit(\'changeInput\', [\'id\' => \'' . $name .'\', \'value\' => $' . Str::lower($projectModel->name) .'->' . Str::camel(Str::plural($relation->label)) .'->pluck(\'id\')]);' . "\n\t\t\t";
+                $value = '$this->emit(\'changeInput\', [\'id\' => \'' . $name .'\', \'value\' => $' . Str::lower(Str::singular($projectModel->name)) .'->' . Str::camel(Str::plural($relation->label)) .'->pluck(\'id\')]);' . "\n\t\t\t";
 
                 $str .= $value;
             }
